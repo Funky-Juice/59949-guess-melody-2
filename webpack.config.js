@@ -1,3 +1,4 @@
+const webpack = require(`webpack`);
 const path = require(`path`);
 
 module.exports = {
@@ -23,5 +24,10 @@ module.exports = {
       }
     ],
   },
+  plugins: [
+    new webpack.ProvidePlugin({
+      'React': `react`
+    })
+  ],
   devtool: `source-map`
 };
