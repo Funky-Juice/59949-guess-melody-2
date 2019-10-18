@@ -1,4 +1,4 @@
-import WelcomeScreen from '../welcome-screen/welcome-screen.jsx';
+import WelcomeScreen from '../welcome-screen/welcome-screen';
 
 const App = () => {
   return <WelcomeScreen />;

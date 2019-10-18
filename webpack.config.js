@@ -29,5 +29,8 @@ module.exports = {
       'React': `react`
     })
   ],
+  resolve: {
+    extensions: [`.js`, `.jsx`]
+  },
   devtool: `source-map`
 };
