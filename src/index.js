@@ -4,7 +4,7 @@ import App from './components/app/app';
 const init = () => {
   const settings = {
     gameTime: 5,
-    errorCount: 3,
+    errorCount: 3
   };
 
   ReactDOM.render(
@@ -14,6 +14,11 @@ const init = () => {
       />,
       document.getElementById(`root`)
   );
+};
+
+App.defaultProps = {
+  gameTime: 10,
+  errorCount: 10
 };
 
 init();
