@@ -14,7 +14,7 @@ const App = (props) => {
 App.propTypes = {
   gameTime: PropTypes.number.isRequired,
   errorCount: PropTypes.number.isRequired,
-  gameStart: PropTypes.func
+  gameStart: PropTypes.func.isRequired
 };
 
 export default App;
