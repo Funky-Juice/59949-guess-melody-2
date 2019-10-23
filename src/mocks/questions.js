@@ -25,9 +25,9 @@ export const questions = [
     type: `artist`,
     song: {
       artist: `Ozzy Osbourne`,
-      song: `http://rock-nation.ru/upload/mp3/Black%20Sabbath/1970%20-%20Paranoid/02.%20Paranoid.mp3`
+      src: `https://dl1.ru-music.xn--41a.ws/mp3/1369.mp3`
     },
-    answer: [
+    answers: [
       {
         picture: `https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Till_Lindemann_-_2017287140953_2017-10-14_Buchmesse.jpg/800px-Till_Lindemann_-_2017287140953_2017-10-14_Buchmesse.jpg`,
         artist: `Till Lindemann`

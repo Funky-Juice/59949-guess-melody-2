@@ -1,5 +1,9 @@
-const GuessArtistScreen = () => {
-  return <template id="game-artist">
+import PropTypes from 'prop-types';
+
+const GuessArtistScreen = (props) => {
+  const {time, errors, question, onAnswer} = props;
+
+  return <article id="game-artist">
     <section className="game game--artist">
       <header className="game__header">
         <a className="game__back" href="#">
@@ -9,19 +13,19 @@ const GuessArtistScreen = () => {
 
         <svg xmlns="http://www.w3.org/2000/svg" className="timer" viewBox="0 0 780 780">
           <circle className="timer__line" cx="390" cy="390" r="370"
-            style="filter: url(#blur); transform: rotate(-90deg) scaleY(-1); transform-origin: center"/>
+            style={{filter: `url(#blur)`, transform: `rotate(-90deg) scaleY(-1)`, transformOrigin: `center`}}/>
         </svg>
 
         <div className="timer__value" xmlns="http://www.w3.org/1999/xhtml">
-          <span className="timer__mins">05</span>
+          <span className="timer__mins">{time}</span>
           <span className="timer__dots">:</span>
           <span className="timer__secs">00</span>
         </div>
 
         <div className="game__mistakes">
-          <div className="wrong"></div>
-          <div className="wrong"></div>
-          <div className="wrong"></div>
+          {[...Array(errors)].map((error, i) =>
+            <div key={i} className="wrong"></div>
+          )}
         </div>
       </header>
 
@@ -31,39 +35,32 @@ const GuessArtistScreen = () => {
           <div className="track">
             <button className="track__button track__button--play" type="button"></button>
             <div className="track__status">
-              <audio></audio>
+              <audio controls src={question.song.src}></audio>
             </div>
           </div>
         </div>
 
-        <form className="game__artist">
-          <div className="artist">
-            <input className="artist__input visually-hidden" type="radio" name="answer" value="artist-1" id="answer-1"></input>
-            <label className="artist__name" htmlFor="answer-1">
-              <img className="artist__picture" src="http://placehold.it/134x134" alt="Пелагея"></img>
-                Пелагея
-            </label>
-          </div>
-
-          <div className="artist">
-            <input className="artist__input visually-hidden" type="radio" name="answer" value="artist-2" id="answer-2"></input>
-            <label className="artist__name" htmlFor="answer-2">
-              <img className="artist__picture" src="http://placehold.it/134x134" alt="Пелагея"></img>
-                Краснознаменная дивизия имени моей бабушки
-            </label>
-          </div>
-
-          <div className="artist">
-            <input className="artist__input visually-hidden" type="radio" name="answer" value="artist-3" id="answer-3"></input>
-            <label className="artist__name" htmlFor="answer-3">
-              <img className="artist__picture" src="http://placehold.it/134x134" alt="Пелагея"></img>
-                Lorde
-            </label>
-          </div>
+        <form className="game__artist" onChange={onAnswer}>
+          {question.answers.map((answer, i) =>
+            <div className="artist" key={i}>
+              <input className="artist__input visually-hidden" type="radio" name="answer" value={answer.artist} id={`answer-` + i}></input>
+              <label className="artist__name" htmlFor={`answer-` + i}>
+                <img className="artist__picture" src={answer.picture} alt={answer.artist}></img>
+                {answer.artist}
+              </label>
+            </div>
+          )}
         </form>
       </section>
     </section>
-  </template>;
+  </article>;
+};
+
+GuessArtistScreen.propTypes = {
+  time: PropTypes.number.isRequired,
+  errors: PropTypes.number.isRequired,
+  question: PropTypes.object.isRequired,
+  onAnswer: PropTypes.func.isRequired
 };
 
 export default GuessArtistScreen;
