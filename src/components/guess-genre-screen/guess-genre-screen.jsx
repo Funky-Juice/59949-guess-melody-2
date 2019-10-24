@@ -31,7 +31,9 @@ const GuessGenreScreen = (props) => {
 
       <section className="game__screen">
         <h2 className="game__title">Выберите {question.genre} треки</h2>
-        <form className="game__tracks" onSubmit={onAnswer}>
+        <form className="game__tracks" onSubmit={(evt) => {
+          evt.preventDefault(); onAnswer();
+        }}>
           {question.answers.map((answer, i) =>
             <div className="track" key={i}>
               <button className="track__button track__button--play" type="button"></button>

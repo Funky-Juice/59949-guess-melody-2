@@ -2,6 +2,7 @@ import {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import WelcomeScreen from '../welcome-screen/welcome-screen';
 import GuessGenreScreen from '../guess-genre-screen/guess-genre-screen';
+import GuessArtistScreen from '../guess-artist-screen/guess-artist-screen';
 
 class App extends PureComponent {
   static getScreen(questionNum, props, onUserAnswer) {
@@ -11,7 +12,18 @@ class App extends PureComponent {
       return <WelcomeScreen time={gameTime} errors={errorCount} onStartBtnClick={onUserAnswer}/>;
     }
 
-    return <GuessGenreScreen question={questions[questionNum]} time={gameTime} errors={errorCount} onAnswer={onUserAnswer}/>;
+    const currentQuestion = questions[questionNum];
+
+    switch (currentQuestion.type) {
+      case `genre`: return <GuessGenreScreen
+        question={currentQuestion} time={gameTime} errors={errorCount} onAnswer={onUserAnswer}
+      />;
+      case `artist`: return <GuessArtistScreen
+        question={currentQuestion} time={gameTime} errors={errorCount} onAnswer={onUserAnswer}
+      />;
+    }
+
+    return null;
   }
 
   constructor(props) {
