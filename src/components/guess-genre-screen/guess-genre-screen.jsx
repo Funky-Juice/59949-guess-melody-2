@@ -2,6 +2,18 @@ import PropTypes from 'prop-types';
 
 const GuessGenreScreen = (props) => {
   const {time, errors, question, onAnswer} = props;
+  const inputsArr = [];
+
+  const getInputsValues = () => {
+    const answersArr = [];
+
+    inputsArr.forEach((it) => {
+      if (it.checked) {
+        answersArr.push(it.value);
+      }
+    });
+    return answersArr;
+  };
 
   return <article id="game-genre">
     <section className="game game--genre">
@@ -32,7 +44,8 @@ const GuessGenreScreen = (props) => {
       <section className="game__screen">
         <h2 className="game__title">Выберите {question.genre} треки</h2>
         <form className="game__tracks" onSubmit={(evt) => {
-          evt.preventDefault(); onAnswer();
+          evt.preventDefault();
+          onAnswer(getInputsValues());
         }}>
           {question.answers.map((answer, i) =>
             <div className="track" key={i}>
@@ -42,7 +55,7 @@ const GuessGenreScreen = (props) => {
               </div>
               <div className="game__answer">
                 <input className="game__input visually-hidden" type="checkbox" name="answer" value={answer.genre}
-                  id={`answer-` + i}></input>
+                  id={`answer-` + i} ref={(elem) => (inputsArr.push(elem))}></input>
                 <label className="game__check" htmlFor={`answer-` + i}>Отметить</label>
               </div>
             </div>

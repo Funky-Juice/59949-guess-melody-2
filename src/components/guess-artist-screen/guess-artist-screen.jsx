@@ -40,10 +40,12 @@ const GuessArtistScreen = (props) => {
           </div>
         </div>
 
-        <form className="game__artist" onChange={onAnswer}>
+        <form className="game__artist">
           {question.answers.map((answer, i) =>
             <div className="artist" key={i}>
-              <input className="artist__input visually-hidden" type="radio" name="answer" value={answer.artist} id={`answer-` + i}></input>
+              <input className="artist__input visually-hidden" onChange={(evt) => {
+                onAnswer(evt.target.value);
+              }} type="radio" name="answer" value={answer.artist} id={`answer-` + i}></input>
               <label className="artist__name" htmlFor={`answer-` + i}>
                 <img className="artist__picture" src={answer.picture} alt={answer.artist}></img>
                 {answer.artist}
