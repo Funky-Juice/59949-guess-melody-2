@@ -35,12 +35,18 @@ class App extends PureComponent {
   }
 
   render() {
+    const {questions} = this.props;
     const {questionNumber} = this.state;
 
     return App.getScreen(questionNumber, this.props, () => {
-      this.setState((prevState) => ({
-        questionNumber: prevState.questionNumber + 1
-      }));
+      this.setState((prevState) => {
+        const nextIndex = prevState.questionNumber + 1;
+        const isEnd = nextIndex >= questions.length;
+
+        return {
+          questionNumber: !isEnd ? nextIndex : -1,
+        };
+      });
     });
   }
 }
