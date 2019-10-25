@@ -16,10 +16,10 @@ class App extends PureComponent {
 
     switch (currentQuestion.type) {
       case `genre`: return <GuessGenreScreen
-        question={currentQuestion} time={gameTime} errors={errorCount} onAnswer={onUserAnswer}
+        question={currentQuestion} time={gameTime} errors={errorCount} onAnswer={onUserAnswer} screenIndex={questionNum}
       />;
       case `artist`: return <GuessArtistScreen
-        question={currentQuestion} time={gameTime} errors={errorCount} onAnswer={onUserAnswer}
+        question={currentQuestion} time={gameTime} errors={errorCount} onAnswer={onUserAnswer} screenIndex={questionNum}
       />;
     }
 

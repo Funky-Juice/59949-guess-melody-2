@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 const GuessArtistScreen = (props) => {
-  const {time, errors, question, onAnswer} = props;
+  const {time, errors, question, onAnswer, screenIndex} = props;
 
   return <article id="game-artist">
     <section className="game game--artist">
@@ -42,7 +42,7 @@ const GuessArtistScreen = (props) => {
 
         <form className="game__artist">
           {question.answers.map((answer, i) =>
-            <div className="artist" key={i}>
+            <div className="artist" key={`${screenIndex}-answer-${i}`}>
               <input className="artist__input visually-hidden" onChange={(evt) => {
                 onAnswer(evt.target.value);
               }} type="radio" name="answer" value={answer.artist} id={`answer-` + i}></input>
@@ -62,7 +62,8 @@ GuessArtistScreen.propTypes = {
   time: PropTypes.number.isRequired,
   errors: PropTypes.number.isRequired,
   question: PropTypes.object.isRequired,
-  onAnswer: PropTypes.func.isRequired
+  onAnswer: PropTypes.func.isRequired,
+  screenIndex: PropTypes.number.isRequired
 };
 
 export default GuessArtistScreen;

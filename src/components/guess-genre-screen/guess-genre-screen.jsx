@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 const GuessGenreScreen = (props) => {
-  const {time, errors, question, onAnswer} = props;
+  const {time, errors, question, onAnswer, screenIndex} = props;
   const inputsArr = [];
 
   const getInputsValues = () => {
@@ -48,7 +48,7 @@ const GuessGenreScreen = (props) => {
           onAnswer(getInputsValues());
         }}>
           {question.answers.map((answer, i) =>
-            <div className="track" key={i}>
+            <div className="track" key={`${screenIndex}-answer-${i}`}>
               <button className="track__button track__button--play" type="button"></button>
               <div className="track__status">
                 <audio controls src={answer.src}></audio>
@@ -72,7 +72,8 @@ GuessGenreScreen.propTypes = {
   time: PropTypes.number.isRequired,
   errors: PropTypes.number.isRequired,
   question: PropTypes.object.isRequired,
-  onAnswer: PropTypes.func.isRequired
+  onAnswer: PropTypes.func.isRequired,
+  screenIndex: PropTypes.number.isRequired
 };
 
 export default GuessGenreScreen;
