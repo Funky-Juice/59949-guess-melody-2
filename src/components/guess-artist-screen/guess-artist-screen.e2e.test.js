@@ -46,5 +46,5 @@ it(`GuessArtistScreen onAnswer returns correct data`, () => {
   });
 
   expect(answerCB).toHaveBeenCalledTimes(1);
-  expect(answerCB).toHaveReturnedWith(mockQuestion.answers[0].artist);
+  expect(answerCB.mock.calls[0][0]).toEqual(mockQuestion.answers[0].artist);
 });

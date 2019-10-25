@@ -45,5 +45,5 @@ it(`GuessGenreScreen onAnswer returns correct data`, () => {
   });
 
   expect(answerCB).toHaveBeenCalledTimes(1);
-  expect(answerCB).toHaveReturnedWith(expect.any(Array));
+  expect(answerCB.mock.calls[0][0]).toEqual(expect.any(Array));
 });
