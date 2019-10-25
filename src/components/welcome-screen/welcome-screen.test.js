@@ -3,7 +3,7 @@ import WelcomeScreen from './welcome-screen.jsx';
 
 it(`WelcomeScreen correctly renders after relaunch`, () => {
   const tree = renderer
-    .create(<WelcomeScreen time={0} errorCount={0}/>)
+    .create(<WelcomeScreen time={0} errors={0} onStartBtnClick={() => {}}/>)
     .toJSON();
 
   expect(tree).toMatchSnapshot();

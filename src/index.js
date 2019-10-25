@@ -1,28 +1,17 @@
 import ReactDOM from 'react-dom';
 import App from './components/app/app';
+import {questions, params} from './mocks/questions';
 
-const init = () => {
-  const settings = {
-    gameTime: 5,
-    errorCount: 3,
-    gameStart: () => {
-      return `start game!`;
-    }
-  };
+const init = (gameQuestions, gameParams) => {
 
   ReactDOM.render(
       <App
-        gameTime={settings.gameTime}
-        errorCount={settings.errorCount}
-        gameStart={settings.gameStart}
+        questions={gameQuestions}
+        gameTime={gameParams.gameTime}
+        errorCount={gameParams.errorCount}
       />,
       document.getElementById(`root`)
   );
 };
 
-App.defaultProps = {
-  gameTime: 10,
-  errorCount: 10
-};
-
-init();
+init(questions, params);

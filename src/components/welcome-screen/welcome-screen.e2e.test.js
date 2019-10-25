@@ -8,8 +8,8 @@ it(`WelcomeScreen start button click handler`, () => {
   const clickHandler = jest.fn();
   const welcomeScreen = shallow(<WelcomeScreen
     time={0}
-    errorCount={0}
-    start={clickHandler}
+    errors={0}
+    onStartBtnClick={clickHandler}
   />);
 
   const startButton = welcomeScreen.find(`button.welcome__button`);
