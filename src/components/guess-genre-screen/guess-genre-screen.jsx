@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import AudioPlayer from '../audio-player/audio-player';
 
 const GuessGenreScreen = (props) => {
   const {time, errors, question, onAnswer, screenIndex} = props;
@@ -49,10 +50,8 @@ const GuessGenreScreen = (props) => {
         }}>
           {question.answers.map((answer, i) =>
             <div className="track" key={`${screenIndex}-answer-${i}`}>
-              <button className="track__button track__button--play" type="button"></button>
-              <div className="track__status">
-                <audio controls src={answer.src}></audio>
-              </div>
+              <AudioPlayer src={answer.src}/>
+
               <div className="game__answer">
                 <input className="game__input visually-hidden" type="checkbox" name="answer" value={answer.genre}
                   id={`answer-` + i} ref={(elem) => (inputsArr.push(elem))}></input>
