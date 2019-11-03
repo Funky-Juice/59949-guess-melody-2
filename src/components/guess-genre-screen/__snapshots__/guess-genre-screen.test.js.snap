@@ -87,48 +87,14 @@ exports[`GuessGenreScreen correctly renders 1`] = `
         >
           <button
             className="track__button track__button--play"
+            disabled={true}
+            onClick={[Function]}
             type="button"
           />
           <div
             className="track__status"
           >
-            <audio
-              controls={true}
-              src="https://upload.wikimedia.org/wikipedia/commons/3/34/Metalmania_(ISRC_USUAN1700023).mp3"
-            />
-          </div>
-          <div
-            className="game__answer"
-          >
-            <input
-              className="game__input visually-hidden"
-              id="answer-0"
-              name="answer"
-              type="checkbox"
-              value="rock"
-            />
-            <label
-              className="game__check"
-              htmlFor="answer-0"
-            >
-              Отметить
-            </label>
-          </div>
-        </div>
-        <div
-          className="track"
-        >
-          <button
-            className="track__button track__button--play"
-            type="button"
-          />
-          <div
-            className="track__status"
-          >
-            <audio
-              controls={true}
-              src="https://upload.wikimedia.org/wikipedia/commons/5/5d/Acid_Trumpet_%28ISRC_USUAN1100339%29.mp3"
-            />
+            <audio />
           </div>
           <div
             className="game__answer"
@@ -138,7 +104,7 @@ exports[`GuessGenreScreen correctly renders 1`] = `
               id="answer-1"
               name="answer"
               type="checkbox"
-              value="jazz"
+              value="rock"
             />
             <label
               className="game__check"
@@ -153,15 +119,14 @@ exports[`GuessGenreScreen correctly renders 1`] = `
         >
           <button
             className="track__button track__button--play"
+            disabled={true}
+            onClick={[Function]}
             type="button"
           />
           <div
             className="track__status"
           >
-            <audio
-              controls={true}
-              src="https://upload.wikimedia.org/wikipedia/commons/d/db/Keef_Trouble%2C_Oasis.oga"
-            />
+            <audio />
           </div>
           <div
             className="game__answer"
@@ -171,7 +136,7 @@ exports[`GuessGenreScreen correctly renders 1`] = `
               id="answer-2"
               name="answer"
               type="checkbox"
-              value="pop"
+              value="jazz"
             />
             <label
               className="game__check"
@@ -186,15 +151,14 @@ exports[`GuessGenreScreen correctly renders 1`] = `
         >
           <button
             className="track__button track__button--play"
+            disabled={true}
+            onClick={[Function]}
             type="button"
           />
           <div
             className="track__status"
           >
-            <audio
-              controls={true}
-              src="https://upload.wikimedia.org/wikipedia/commons/c/c2/Synth_pop_with_4_on_the_floor.ogg"
-            />
+            <audio />
           </div>
           <div
             className="game__answer"
@@ -204,11 +168,43 @@ exports[`GuessGenreScreen correctly renders 1`] = `
               id="answer-3"
               name="answer"
               type="checkbox"
-              value="electronic"
+              value="pop"
             />
             <label
               className="game__check"
               htmlFor="answer-3"
+            >
+              Отметить
+            </label>
+          </div>
+        </div>
+        <div
+          className="track"
+        >
+          <button
+            className="track__button track__button--play"
+            disabled={true}
+            onClick={[Function]}
+            type="button"
+          />
+          <div
+            className="track__status"
+          >
+            <audio />
+          </div>
+          <div
+            className="game__answer"
+          >
+            <input
+              className="game__input visually-hidden"
+              id="answer-4"
+              name="answer"
+              type="checkbox"
+              value="electronic"
+            />
+            <label
+              className="game__check"
+              htmlFor="answer-4"
             >
               Отметить
             </label>

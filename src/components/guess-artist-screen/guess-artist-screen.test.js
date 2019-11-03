@@ -9,24 +9,40 @@ const mockQuestion = {
   },
   answers: [
     {
+      id: 1,
       picture: `https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Till_Lindemann_-_2017287140953_2017-10-14_Buchmesse.jpg/800px-Till_Lindemann_-_2017287140953_2017-10-14_Buchmesse.jpg`,
       artist: `Till Lindemann`
     },
     {
+      id: 2,
       picture: `https://upload.wikimedia.org/wikipedia/commons/f/fd/JamesHetfield2012.jpg`,
       artist: `James Hetfield`
     },
     {
+      id: 3,
       picture: `https://upload.wikimedia.org/wikipedia/commons/7/7b/Ozzy_on_tour_in_Japan.jpg`,
       artist: `Ozzy Osbourne`
     }
   ]
 };
 
+function createNodeMock(element) {
+  if (element.type === `audio`) {
+    return {createRef() {}};
+  }
+  return null;
+}
 
 it(`GuessArtistScreen correctly renders`, () => {
+  const options = {createNodeMock};
   const tree = renderer
-    .create(<GuessArtistScreen question={mockQuestion} time={0} errors={0} screenIndex={0} onAnswer={() => {}}/>)
+    .create(<GuessArtistScreen
+      question={mockQuestion}
+      time={0}
+      errors={0}
+      screenIndex={0}
+      onAnswer={() => {}}
+    />, options)
     .toJSON();
 
   expect(tree).toMatchSnapshot();
