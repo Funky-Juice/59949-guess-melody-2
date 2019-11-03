@@ -93,9 +93,17 @@ class GuessGenreScreen extends PureComponent {
 GuessGenreScreen.propTypes = {
   time: PropTypes.number.isRequired,
   errors: PropTypes.number.isRequired,
-  question: PropTypes.object.isRequired,
   onAnswer: PropTypes.func.isRequired,
-  screenIndex: PropTypes.number.isRequired
+  screenIndex: PropTypes.number.isRequired,
+  question: PropTypes.shape({
+    type: PropTypes.oneOf([`genre`]).isRequired,
+    genre: PropTypes.oneOf([`rock`, `jazz`, `pop`, `electronic`]).isRequired,
+    answers: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      src: PropTypes.string.isRequired,
+      genre: PropTypes.oneOf([`rock`, `jazz`, `pop`, `electronic`]).isRequired
+    }))
+  }).isRequired
 };
 
 export default GuessGenreScreen;

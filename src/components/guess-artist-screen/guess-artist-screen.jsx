@@ -82,9 +82,20 @@ class GuessArtistScreen extends PureComponent {
 GuessArtistScreen.propTypes = {
   time: PropTypes.number.isRequired,
   errors: PropTypes.number.isRequired,
-  question: PropTypes.object.isRequired,
   onAnswer: PropTypes.func.isRequired,
-  screenIndex: PropTypes.number.isRequired
+  screenIndex: PropTypes.number.isRequired,
+  question: PropTypes.shape({
+    type: PropTypes.oneOf([`artist`]).isRequired,
+    song: PropTypes.shape({
+      src: PropTypes.string.isRequired,
+      artist: PropTypes.string.isRequired
+    }).isRequired,
+    answers: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      picture: PropTypes.string.isRequired,
+      artist: PropTypes.string.isRequired
+    }))
+  }).isRequired
 };
 
 export default GuessArtistScreen;
