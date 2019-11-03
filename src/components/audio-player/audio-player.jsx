@@ -65,6 +65,15 @@ class AudioPlayer extends PureComponent {
       audio.pause();
     }
   }
+
+  componentWillUnmount() {
+    const audio = this._audioRef.current;
+
+    audio.oncanplaythrough = null;
+    audio.onplay = null;
+    audio.onpause = null;
+    audio.src = ``;
+  }
 }
 
 AudioPlayer.propTypes = {
