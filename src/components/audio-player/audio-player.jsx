@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
-import {Fragment, createRef} from 'react';
-import {PureComponent} from 'react';
+import {Fragment, createRef, PureComponent} from 'react';
 
 class AudioPlayer extends PureComponent {
   constructor(props) {
@@ -11,7 +10,7 @@ class AudioPlayer extends PureComponent {
 
     this.state = {
       isLoading: true,
-      isPlaying: false
+      isPlaying: props.isPlaying
     };
   }
 
@@ -31,6 +30,7 @@ class AudioPlayer extends PureComponent {
   }
 
   _onPlayBtnClick() {
+    this.props.onPlayButtonClick();
     this.setState({isPlaying: !this.state.isPlaying});
   }
 
@@ -44,18 +44,22 @@ class AudioPlayer extends PureComponent {
     });
 
     audio.onplay = () => {
-      console.log(`play`);
+      this.setState({
+        isPlaying: true
+      });
     };
 
     audio.onpause = () => {
-      console.log(`pause`);
+      this.setState({
+        isPlaying: false
+      });
     };
   }
 
   componentDidUpdate() {
     const audio = this._audioRef.current;
 
-    if (this.state.isPlaying) {
+    if (this.props.isPlaying) {
       audio.play();
     } else {
       audio.pause();
@@ -64,7 +68,9 @@ class AudioPlayer extends PureComponent {
 }
 
 AudioPlayer.propTypes = {
-  src: PropTypes.string.isRequired
+  src: PropTypes.string.isRequired,
+  isPlaying: PropTypes.bool.isRequired,
+  onPlayButtonClick: PropTypes.func.isRequired
 };
 
 export default AudioPlayer;
