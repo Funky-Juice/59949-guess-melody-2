@@ -1,4 +1,4 @@
-import {Fragment, createRef, PureComponent} from 'react';
+import {createRef, PureComponent} from 'react';
 
 class AudioPlayer extends PureComponent {
   constructor(props) {
@@ -11,21 +11,6 @@ class AudioPlayer extends PureComponent {
       isLoading: true,
       isPlaying: props.isPlaying
     };
-  }
-
-  render() {
-    const {isLoading, isPlaying} = this.state;
-    return (<Fragment>
-      <button
-        className={`track__button track__button--${isPlaying ? `pause` : `play`}`}
-        type="button"
-        disabled={isLoading}
-        onClick={this._onPlayBtnClick}
-      ></button>
-      <div className="track__status">
-        <audio ref={this._audioRef}/>
-      </div>
-    </Fragment>);
   }
 
   _onPlayBtnClick() {
@@ -58,11 +43,7 @@ class AudioPlayer extends PureComponent {
   componentDidUpdate() {
     const audio = this._audioRef.current;
 
-    if (this.props.isPlaying) {
-      audio.play();
-    } else {
-      audio.pause();
-    }
+    return this.props.isPlaying ? audio.play() : audio.pause();
   }
 
   componentWillUnmount() {
@@ -71,7 +52,22 @@ class AudioPlayer extends PureComponent {
     audio.oncanplaythrough = null;
     audio.onplay = null;
     audio.onpause = null;
-    audio.src = ``;
+    audio.src = null;
+  }
+
+  render() {
+    const {isLoading, isPlaying} = this.state;
+    return (<>
+      <button
+        className={`track__button track__button--${isPlaying ? `pause` : `play`}`}
+        type="button"
+        disabled={isLoading}
+        onClick={this._onPlayBtnClick}
+      ></button>
+      <div className="track__status">
+        <audio ref={this._audioRef}/>
+      </div>
+    </>);
   }
 }
 
