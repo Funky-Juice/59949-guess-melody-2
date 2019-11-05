@@ -1,5 +1,3 @@
-import PropTypes from 'prop-types';
-
 const WelcomeScreen = (props) => {
   const {time, errors, onStartBtnClick} = props;
 
