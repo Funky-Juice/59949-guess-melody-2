@@ -1,5 +1,4 @@
 import {PureComponent} from 'react';
-import PropTypes from 'prop-types';
 import WelcomeScreen from '../welcome-screen/welcome-screen';
 import GuessGenreScreen from '../guess-genre-screen/guess-genre-screen';
 import GuessArtistScreen from '../guess-artist-screen/guess-artist-screen';

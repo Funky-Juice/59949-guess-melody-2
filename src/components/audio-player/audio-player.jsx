@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import {Fragment, createRef, PureComponent} from 'react';
 
 class AudioPlayer extends PureComponent {

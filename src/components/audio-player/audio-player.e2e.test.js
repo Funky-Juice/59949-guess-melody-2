@@ -1,8 +1,5 @@
-import Enzyme, {mount} from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import {mount} from 'enzyme';
 import AudioPlayer from './audio-player';
-
-Enzyme.configure({adapter: new Adapter()});
 
 HTMLMediaElement.prototype.pause = () => {};
 

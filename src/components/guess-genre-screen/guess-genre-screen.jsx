@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import {PureComponent, createRef} from 'react';
 import AudioPlayer from '../audio-player/audio-player';
 

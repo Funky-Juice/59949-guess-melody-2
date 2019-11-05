@@ -1,8 +1,6 @@
-import Enzyme, {mount} from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import {mount} from 'enzyme';
 import GuessGenreScreen from './guess-genre-screen';
 
-Enzyme.configure({adapter: new Adapter()});
 
 const mockQuestion = {
   type: `genre`,
