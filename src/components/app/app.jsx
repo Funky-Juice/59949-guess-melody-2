@@ -1,5 +1,8 @@
 import {PureComponent} from 'react';
 import WelcomeScreen from '../welcome-screen/welcome-screen';
+import Form from '../form';
+import Posts from '../posts';
+
 import GuessGenreScreen from '../guess-genre-screen/guess-genre-screen';
 import GuessArtistScreen from '../guess-artist-screen/guess-artist-screen';
 
@@ -32,7 +35,11 @@ class App extends PureComponent {
     const {questions, gameTime, errorCount} = props;
 
     if (questionNum === -1) {
-      return <WelcomeScreen time={gameTime} errors={errorCount} onStartBtnClick={onUserAnswer}/>;
+      return <>
+        <WelcomeScreen time={gameTime} errors={errorCount} onStartBtnClick={onUserAnswer}/>
+        <Form/>
+        <Posts/>
+      </>;
     }
 
     const currentQuestion = questions[questionNum];

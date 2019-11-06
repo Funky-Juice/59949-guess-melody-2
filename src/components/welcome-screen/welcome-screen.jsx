@@ -1,10 +1,23 @@
-const WelcomeScreen = (props) => {
-  const {time, errors, onStartBtnClick} = props;
+import {connect} from 'react-redux';
+
+const mapStateToProps = (state) => {
+  return {articles: state.articles};
+};
+
+const ConnectedWelcomeScreen = (props) => {
+  const {articles, time, errors, onStartBtnClick} = props;
 
   return <section className="welcome">
     <div className="welcome__logo">
       <img src="img/melody-logo.png" alt="Угадай мелодию" width="186" height="83"/>
     </div>
+
+    <ul>
+      {articles.map((el) => (
+        <li key={el.id}>{el.title}</li>
+      ))}
+    </ul>
+
     <button className="welcome__button" onClick={onStartBtnClick}>
       <span className="visually-hidden">Начать игру</span>
     </button>
@@ -18,7 +31,9 @@ const WelcomeScreen = (props) => {
   </section>;
 };
 
-WelcomeScreen.propTypes = {
+const WelcomeScreen = connect(mapStateToProps)(ConnectedWelcomeScreen);
+
+ConnectedWelcomeScreen.propTypes = {
   time: PropTypes.number.isRequired,
   errors: PropTypes.number.isRequired,
   onStartBtnClick: PropTypes.func.isRequired
