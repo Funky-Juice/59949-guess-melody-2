@@ -10,7 +10,7 @@ const init = (gameQuestions, gameParams) => {
     <App
       questions={gameQuestions}
       gameTime={gameParams.gameTime}
-      errorCount={gameParams.errorCount}
+      maxMistakes={gameParams.errorCount}
     />
   </Provider>,
   document.getElementById(`root`)
