@@ -1,2 +1,3 @@
 export const RESET = `RESET`;
 export const INCREMENT_LEVEL = `INCREMENT_LEVEL`;
+export const INCREMENT_MISTAKES = `INCREMENT_MISTAKES`;

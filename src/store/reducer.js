@@ -11,6 +11,10 @@ const reducer = (state = initialState, action) => {
       level: state.level + action.payload
     });
 
+    case types.INCREMENT_MISTAKES: return Object.assign({}, state, {
+      mistakes: state.mistakes + action.payload
+    });
+
     case types.RESET: return Object.assign({}, initialState);
   }
 

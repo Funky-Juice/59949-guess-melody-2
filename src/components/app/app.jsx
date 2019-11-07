@@ -16,13 +16,13 @@ class App extends PureComponent {
   }
 
   static getScreen(props) {
-    const {level, questions, gameTime, errorCount, onLevelChange, onGameEnd} = props;
+    const {level, questions, gameTime, mistakes, errorCount, onGameStart, onUserAnswer} = props;
 
     if (level === -1) {
       return <WelcomeScreen
         time={gameTime}
         errors={errorCount}
-        onStartBtnClick={onLevelChange}
+        onStartBtnClick={onGameStart}
       />;
     }
 
@@ -33,7 +33,7 @@ class App extends PureComponent {
         question={currentQuestion}
         time={gameTime}
         errors={errorCount}
-        onAnswer={onLevelChange}
+        onAnswer={(answer) => onUserAnswer(answer, currentQuestion, mistakes, errorCount)}
         screenIndex={level}
       />;
 
@@ -41,7 +41,7 @@ class App extends PureComponent {
         question={currentQuestion}
         time={gameTime}
         errors={errorCount}
-        onAnswer={onGameEnd}
+        onAnswer={(answer) => onUserAnswer(answer, currentQuestion, mistakes, errorCount)}
         screenIndex={level}
       />;
     }
@@ -52,22 +52,31 @@ class App extends PureComponent {
 
 const mapStateToProps = (state, ownProps) => {
   return Object.assign({}, ownProps, {
-    level: state.level
+    level: state.level,
+    mistakes: state.mistakes
   });
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  onLevelChange: () => dispatch(ActionCreator.incrementLevel()),
-  onGameEnd: () => dispatch(ActionCreator.resetGame())
+  onGameStart: () => dispatch(ActionCreator.incrementLevel()),
+
+  onGameEnd: () => dispatch(ActionCreator.resetGame()),
+
+  onUserAnswer: (userAnswer, question, mistakes, maxMistakes) => {
+    dispatch(ActionCreator.incrementLevel());
+    dispatch(ActionCreator.incrementMistakes(userAnswer, question, mistakes, maxMistakes));
+  }
 });
 
 
 App.propTypes = {
   level: PropTypes.number.isRequired,
+  mistakes: PropTypes.number.isRequired,
   questions: PropTypes.array.isRequired,
   gameTime: PropTypes.number.isRequired,
   errorCount: PropTypes.number.isRequired,
-  onLevelChange: PropTypes.func.isRequired
+  onUserAnswer: PropTypes.func.isRequired,
+  onGameStart: PropTypes.func.isRequired
 };
 
 export {App};
