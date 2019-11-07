@@ -12,6 +12,13 @@ class App extends PureComponent {
   }
 
   render() {
+    const {level, questions, onGameEnd} = this.props;
+
+    if (level >= questions.length) {
+      onGameEnd();
+      return null;
+    }
+
     return App.getScreen(this.props);
   }
 
@@ -75,8 +82,9 @@ App.propTypes = {
   questions: PropTypes.array.isRequired,
   gameTime: PropTypes.number.isRequired,
   errorCount: PropTypes.number.isRequired,
-  onUserAnswer: PropTypes.func.isRequired,
-  onGameStart: PropTypes.func.isRequired
+  onGameEnd: PropTypes.func.isRequired,
+  onGameStart: PropTypes.func.isRequired,
+  onUserAnswer: PropTypes.func.isRequired
 };
 
 export {App};
