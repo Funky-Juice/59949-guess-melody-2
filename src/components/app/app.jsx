@@ -1,4 +1,7 @@
 import {PureComponent} from 'react';
+import {connect} from 'react-redux';
+import ActionCreator from '../../store/actions';
+
 import WelcomeScreen from '../welcome-screen/welcome-screen';
 import GuessGenreScreen from '../guess-genre-screen/guess-genre-screen';
 import GuessArtistScreen from '../guess-artist-screen/guess-artist-screen';
@@ -6,43 +9,40 @@ import GuessArtistScreen from '../guess-artist-screen/guess-artist-screen';
 class App extends PureComponent {
   constructor(props) {
     super(props);
-
-    this.state = {
-      questionNumber: -1
-    };
   }
 
   render() {
-    const {questions} = this.props;
-    const {questionNumber} = this.state;
-
-    return App.getScreen(questionNumber, this.props, () => {
-      this.setState((prevState) => {
-        const nextIndex = prevState.questionNumber + 1;
-        const isEnd = nextIndex >= questions.length;
-
-        return {
-          questionNumber: !isEnd ? nextIndex : -1,
-        };
-      });
-    });
+    return App.getScreen(this.props);
   }
 
-  static getScreen(questionNum, props, onUserAnswer) {
-    const {questions, gameTime, errorCount} = props;
+  static getScreen(props) {
+    const {level, questions, gameTime, errorCount, onLevelChange} = props;
 
-    if (questionNum === -1) {
-      return <WelcomeScreen time={gameTime} errors={errorCount} onStartBtnClick={onUserAnswer}/>;
+    if (level === -1) {
+      return <WelcomeScreen
+        time={gameTime}
+        errors={errorCount}
+        onStartBtnClick={onLevelChange}
+      />;
     }
 
-    const currentQuestion = questions[questionNum];
+    const currentQuestion = questions[level];
 
     switch (currentQuestion.type) {
       case `genre`: return <GuessGenreScreen
-        question={currentQuestion} time={gameTime} errors={errorCount} onAnswer={onUserAnswer} screenIndex={questionNum}
+        question={currentQuestion}
+        time={gameTime}
+        errors={errorCount}
+        onAnswer={onLevelChange}
+        screenIndex={level}
       />;
+
       case `artist`: return <GuessArtistScreen
-        question={currentQuestion} time={gameTime} errors={errorCount} onAnswer={onUserAnswer} screenIndex={questionNum}
+        question={currentQuestion}
+        time={gameTime}
+        errors={errorCount}
+        onAnswer={onLevelChange}
+        screenIndex={level}
       />;
     }
 
@@ -50,10 +50,25 @@ class App extends PureComponent {
   }
 }
 
-App.propTypes = {
-  questions: PropTypes.array.isRequired,
-  gameTime: PropTypes.number.isRequired,
-  errorCount: PropTypes.number.isRequired
+const mapStateToProps = (state, ownProps) => {
+  return Object.assign({}, ownProps, {
+    level: state.level
+  });
 };
 
-export default App;
+const mapDispatchToProps = (dispatch) => ({
+  onLevelChange: () => dispatch(ActionCreator.incrementLevel())
+});
+
+
+App.propTypes = {
+  level: PropTypes.number.isRequired,
+  questions: PropTypes.array.isRequired,
+  gameTime: PropTypes.number.isRequired,
+  errorCount: PropTypes.number.isRequired,
+  onLevelChange: PropTypes.func.isRequired
+};
+
+export {App};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
