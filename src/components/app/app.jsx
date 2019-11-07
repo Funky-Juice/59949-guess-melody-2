@@ -16,7 +16,7 @@ class App extends PureComponent {
   }
 
   static getScreen(props) {
-    const {level, questions, gameTime, errorCount, onLevelChange} = props;
+    const {level, questions, gameTime, errorCount, onLevelChange, onGameEnd} = props;
 
     if (level === -1) {
       return <WelcomeScreen
@@ -41,7 +41,7 @@ class App extends PureComponent {
         question={currentQuestion}
         time={gameTime}
         errors={errorCount}
-        onAnswer={onLevelChange}
+        onAnswer={onGameEnd}
         screenIndex={level}
       />;
     }
@@ -57,7 +57,8 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  onLevelChange: () => dispatch(ActionCreator.incrementLevel())
+  onLevelChange: () => dispatch(ActionCreator.incrementLevel()),
+  onGameEnd: () => dispatch(ActionCreator.resetGame())
 });
 
 

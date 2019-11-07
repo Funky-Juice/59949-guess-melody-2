@@ -10,6 +10,8 @@ const reducer = (state = initialState, action) => {
     case types.INCREMENT_LEVEL: return Object.assign({}, state, {
       level: state.level + action.payload
     });
+
+    case types.RESET: return Object.assign({}, initialState);
   }
 
   return state;
