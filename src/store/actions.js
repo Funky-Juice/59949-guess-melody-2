@@ -23,7 +23,7 @@ const ActionCreator = {
         break;
     }
 
-    if (!answerIsCorrect && mistakes + 1 >= maxMistakes) {
+    if (!answerIsCorrect && mistakes >= maxMistakes) {
       return ActionCreator.resetGame();
     }
 

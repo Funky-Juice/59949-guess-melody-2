@@ -1,4 +1,5 @@
 import {PureComponent, createRef} from 'react';
+import GameMistakes from '../game-mistakes/game-mistakes';
 import AudioPlayer from '../audio-player/audio-player';
 
 class GuessGenreScreen extends PureComponent {
@@ -41,11 +42,7 @@ class GuessGenreScreen extends PureComponent {
             <span className="timer__secs">00</span>
           </div>
 
-          <div className="game__mistakes">
-            {[...Array(errors)].map((error, i) =>
-              <div key={i} className="wrong"></div>
-            )}
-          </div>
+          <GameMistakes errors={errors}/>
         </header>
 
         <section className="game__screen">

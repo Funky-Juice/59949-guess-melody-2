@@ -39,7 +39,7 @@ class App extends PureComponent {
       case `genre`: return <GuessGenreScreen
         question={currentQuestion}
         time={gameTime}
-        errors={maxMistakes}
+        errors={mistakes}
         onAnswer={(answer) => onUserAnswer(answer, currentQuestion, mistakes, maxMistakes)}
         screenIndex={level}
       />;
@@ -47,7 +47,7 @@ class App extends PureComponent {
       case `artist`: return <GuessArtistScreen
         question={currentQuestion}
         time={gameTime}
-        errors={maxMistakes}
+        errors={mistakes}
         onAnswer={(answer) => onUserAnswer(answer, currentQuestion, mistakes, maxMistakes)}
         screenIndex={level}
       />;
