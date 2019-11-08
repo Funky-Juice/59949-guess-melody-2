@@ -1,7 +1,5 @@
 import * as types from './action-types';
-
-const isArtistAnswerCorrect = () => {};
-const isGenreAnswerCorrect = () => {};
+import {isArtistAnswerCorrect, isGenreAnswerCorrect} from './helpers';
 
 const ActionCreator = {
   resetGame: () => ({
