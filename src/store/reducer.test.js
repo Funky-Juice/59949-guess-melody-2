@@ -1,4 +1,5 @@
 import * as types from './action-types';
+import reducer from './reducer';
 import ActionCreator from './actions';
 import {isArtistAnswerCorrect, isGenreAnswerCorrect} from './helpers';
 
@@ -151,7 +152,7 @@ describe(`Business logic is correct`, () => {
 
 describe(`Action creators work correctly`, () => {
 
-  it(`Action creator for incrementing step returns correct action`, () => {
+  it(`Action creator for incrementing level returns correct action`, () => {
     expect(ActionCreator.incrementLevel()).toEqual({
       type: types.INCREMENT_LEVEL,
       payload: 1
@@ -339,6 +340,88 @@ describe(`Action creators work correctly`, () => {
       ]
     }, Infinity, 0)).toEqual({
       type: types.RESET
+    });
+  });
+});
+
+
+describe(`Reducer works correctly`, () => {
+
+  it(`Reducer without additional params should return initial state`, () => {
+    expect(reducer(undefined, {})).toEqual({
+      level: -1,
+      mistakes: 0
+    });
+  });
+
+  it(`Reducer should increment current level by a given value`, () => {
+    expect(reducer({
+      level: -1,
+      mistakes: 0
+    }, {
+      type: types.INCREMENT_LEVEL,
+      payload: 0
+    })).toEqual({
+      level: -1,
+      mistakes: 0
+    });
+
+    expect(reducer({
+      level: -1,
+      mistakes: 0
+    }, {
+      type: types.INCREMENT_LEVEL,
+      payload: 1
+    })).toEqual({
+      level: 0,
+      mistakes: 0
+    });
+  });
+
+  it(`Reducer should increment number of mistakes by a given value`, () => {
+    expect(reducer({
+      level: -1,
+      mistakes: 0
+    }, {
+      type: types.INCREMENT_MISTAKES,
+      payload: 0
+    })).toEqual({
+      level: -1,
+      mistakes: 0
+    });
+
+    expect(reducer({
+      level: -1,
+      mistakes: 0
+    }, {
+      type: types.INCREMENT_MISTAKES,
+      payload: 1
+    })).toEqual({
+      level: -1,
+      mistakes: 1
+    });
+  });
+
+  it(`Reducer should correctly reset application state`, () => {
+    expect(reducer({
+      level: 3,
+      mistakes: 2
+    }, {
+      type: types.RESET
+    })).toEqual({
+      level: -1,
+      mistakes: 0
+    });
+
+    expect(reducer({
+      level: 3,
+      mistakes: 2
+    }, {
+      type: types.RESET,
+      payload: 1
+    })).toEqual({
+      level: -1,
+      mistakes: 0
     });
   });
 });
