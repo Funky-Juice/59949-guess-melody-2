@@ -53,5 +53,5 @@ export const questions = [
 
 export const params = {
   gameTime: 5,
-  errorCount: 3,
+  maxMistakes: 3,
 };

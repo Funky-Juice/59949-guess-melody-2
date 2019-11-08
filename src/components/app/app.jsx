@@ -23,12 +23,12 @@ class App extends PureComponent {
   }
 
   static getScreen(props) {
-    const {level, questions, gameTime, mistakes, errorCount, onGameStart, onUserAnswer} = props;
+    const {level, questions, gameTime, mistakes, maxMistakes, onGameStart, onUserAnswer} = props;
 
     if (level === -1) {
       return <WelcomeScreen
         time={gameTime}
-        errors={errorCount}
+        errors={maxMistakes}
         onStartBtnClick={onGameStart}
       />;
     }
@@ -39,16 +39,16 @@ class App extends PureComponent {
       case `genre`: return <GuessGenreScreen
         question={currentQuestion}
         time={gameTime}
-        errors={errorCount}
-        onAnswer={(answer) => onUserAnswer(answer, currentQuestion, mistakes, errorCount)}
+        errors={maxMistakes}
+        onAnswer={(answer) => onUserAnswer(answer, currentQuestion, mistakes, maxMistakes)}
         screenIndex={level}
       />;
 
       case `artist`: return <GuessArtistScreen
         question={currentQuestion}
         time={gameTime}
-        errors={errorCount}
-        onAnswer={(answer) => onUserAnswer(answer, currentQuestion, mistakes, errorCount)}
+        errors={maxMistakes}
+        onAnswer={(answer) => onUserAnswer(answer, currentQuestion, mistakes, maxMistakes)}
         screenIndex={level}
       />;
     }
@@ -81,7 +81,7 @@ App.propTypes = {
   mistakes: PropTypes.number.isRequired,
   questions: PropTypes.array.isRequired,
   gameTime: PropTypes.number.isRequired,
-  errorCount: PropTypes.number.isRequired,
+  maxMistakes: PropTypes.number.isRequired,
   onGameEnd: PropTypes.func.isRequired,
   onGameStart: PropTypes.func.isRequired,
   onUserAnswer: PropTypes.func.isRequired
