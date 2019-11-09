@@ -12,9 +12,9 @@ class App extends PureComponent {
   }
 
   render() {
-    const {level, time, questions, onGameEnd} = this.props;
+    const {level, questions, onGameEnd} = this.props;
 
-    if (level >= questions.length || time < 0) {
+    if (level >= questions.length) {
       onGameEnd();
       return null;
     }
@@ -23,7 +23,7 @@ class App extends PureComponent {
   }
 
   static getScreen(props) {
-    const {level, questions, time, mistakes, maxMistakes, onTick, onGameStart, onUserAnswer} = props;
+    const {level, questions, time, mistakes, maxMistakes, onTick, onGameStart, onGameEnd, onUserAnswer} = props;
 
     if (level === -1) {
       return <WelcomeScreen
@@ -40,6 +40,7 @@ class App extends PureComponent {
       level={level}
       time={time}
       onTick={onTick}
+      onTimeEnd={onGameEnd}
       onUserAnswer={onUserAnswer}
     />;
   }

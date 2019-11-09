@@ -12,6 +12,11 @@ class GameTimer extends PureComponent {
     this.timer = setInterval(() => onTick(), 1000);
   }
 
+  componentDidUpdate() {
+    const {time, onTimeEnd} = this.props;
+    return (time < 0 && onTimeEnd());
+  }
+
   componentWillUnmount() {
     clearInterval(this.timer);
   }
@@ -32,6 +37,7 @@ class GameTimer extends PureComponent {
 GameTimer.propTypes = {
   time: PropTypes.number.isRequired,
   onTick: PropTypes.func.isRequired,
+  onTimeEnd: PropTypes.func.isRequired
 };
 
 export default GameTimer;
