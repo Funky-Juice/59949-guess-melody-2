@@ -28,7 +28,7 @@ class App extends PureComponent {
     if (level === -1) {
       return <WelcomeScreen
         time={time}
-        errors={maxMistakes}
+        maxMistakes={maxMistakes}
         onStartBtnClick={onGameStart}
       />;
     }

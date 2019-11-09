@@ -3,7 +3,7 @@ import GameMistakes from '../game-mistakes/game-mistakes';
 
 
 const GameHeader = (props) => {
-  const {time, errors, onTick, onTimeEnd} = props;
+  const {time, mistakes, onTick, onTimeEnd} = props;
 
   return <header className="game__header">
     <a className="game__back" href="#">
@@ -18,13 +18,13 @@ const GameHeader = (props) => {
 
     <GameTimer time={time} onTick={onTick} onTimeEnd={onTimeEnd}/>
 
-    <GameMistakes errors={errors}/>
+    <GameMistakes mistakes={mistakes}/>
   </header>;
 };
 
 GameHeader.propTypes = {
   time: PropTypes.number.isRequired,
-  errors: PropTypes.number.isRequired,
+  mistakes: PropTypes.number.isRequired,
   onTick: PropTypes.func.isRequired,
   onTimeEnd: PropTypes.func.isRequired
 };

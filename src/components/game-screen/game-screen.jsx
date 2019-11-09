@@ -10,21 +10,17 @@ class GameScreen extends PureComponent {
   }
 
   _getGameScreen(props) {
-    const {question, mistakes, maxMistakes, level, time, onUserAnswer} = props;
+    const {question, mistakes, maxMistakes, level, onUserAnswer} = props;
 
     switch (question.type) {
       case `genre`: return <GuessGenreScreen
         question={question}
-        time={time}
-        errors={mistakes}
         onAnswer={(answer) => onUserAnswer(answer, question, mistakes, maxMistakes)}
         screenIndex={level}
       />;
 
       case `artist`: return <GuessArtistScreen
         question={question}
-        time={time}
-        errors={mistakes}
         onAnswer={(answer) => onUserAnswer(answer, question, mistakes, maxMistakes)}
         screenIndex={level}
       />;
@@ -40,7 +36,7 @@ class GameScreen extends PureComponent {
         <section className={`game game--${question.type}`}>
           <GameHeader
             time={time}
-            errors={mistakes}
+            mistakes={mistakes}
             onTick={onTick}
             onTimeEnd={onTimeEnd}
           />

@@ -38,8 +38,6 @@ it(`GuessArtistScreen correctly renders`, () => {
   const tree = renderer
     .create(<GuessArtistScreen
       question={mockQuestion}
-      time={0}
-      errors={0}
       screenIndex={0}
       onAnswer={() => {}}
     />, options)

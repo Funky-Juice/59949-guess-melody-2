@@ -35,8 +35,6 @@ it(`GuessGenreScreen onAnswer returns correct data`, () => {
 
   const wrapper = mount(<GuessGenreScreen
     question={mockQuestion}
-    time={0}
-    errors={0}
     screenIndex={0}
     onAnswer={answerCB}
   />);
