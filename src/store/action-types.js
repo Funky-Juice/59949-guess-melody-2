@@ -1,3 +1,4 @@
 export const RESET = `RESET`;
+export const REDUCE_TIME = `REDUCE_TIME`;
 export const INCREMENT_LEVEL = `INCREMENT_LEVEL`;
 export const INCREMENT_MISTAKES = `INCREMENT_MISTAKES`;

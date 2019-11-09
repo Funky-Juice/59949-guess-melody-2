@@ -1,6 +1,7 @@
 import * as types from './action-types';
 
 const initialState = {
+  time: 30,
   level: -1,
   mistakes: 0
 };
@@ -13,6 +14,10 @@ const reducer = (state = initialState, action) => {
 
     case types.INCREMENT_MISTAKES: return Object.assign({}, state, {
       mistakes: state.mistakes + action.payload
+    });
+
+    case types.REDUCE_TIME: return Object.assign({}, state, {
+      time: state.time - action.payload
     });
 
     case types.RESET: return Object.assign({}, initialState);

@@ -11,6 +11,11 @@ const ActionCreator = {
     payload: 1
   }),
 
+  reduceTime: () => ({
+    type: types.REDUCE_TIME,
+    payload: 1
+  }),
+
   incrementMistakes: (userAnswer, question, mistakes, maxMistakes) => {
     let answerIsCorrect = false;
 
