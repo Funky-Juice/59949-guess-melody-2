@@ -12,9 +12,9 @@ class App extends PureComponent {
   }
 
   render() {
-    const {level, questions, onGameEnd} = this.props;
+    const {level, time, questions, onGameEnd} = this.props;
 
-    if (level >= questions.length) {
+    if (level >= questions.length || time < 0) {
       onGameEnd();
       return null;
     }
@@ -23,11 +23,11 @@ class App extends PureComponent {
   }
 
   static getScreen(props) {
-    const {level, questions, gameTime, mistakes, maxMistakes, onGameStart, onUserAnswer} = props;
+    const {level, questions, time, mistakes, maxMistakes, onTick, onGameStart, onUserAnswer} = props;
 
     if (level === -1) {
       return <WelcomeScreen
-        time={gameTime}
+        time={time}
         errors={maxMistakes}
         onStartBtnClick={onGameStart}
       />;
@@ -38,7 +38,8 @@ class App extends PureComponent {
       maxMistakes={maxMistakes}
       mistakes={mistakes}
       level={level}
-      time={gameTime}
+      time={time}
+      onTick={onTick}
       onUserAnswer={onUserAnswer}
     />;
   }
@@ -46,6 +47,7 @@ class App extends PureComponent {
 
 const mapStateToProps = (state, ownProps) => {
   return Object.assign({}, ownProps, {
+    time: state.time,
     level: state.level,
     mistakes: state.mistakes
   });
@@ -56,6 +58,8 @@ const mapDispatchToProps = (dispatch) => ({
 
   onGameEnd: () => dispatch(ActionCreator.resetGame()),
 
+  onTick: () => dispatch(ActionCreator.reduceTime()),
+
   onUserAnswer: (userAnswer, question, mistakes, maxMistakes) => {
     dispatch(ActionCreator.incrementLevel());
     dispatch(ActionCreator.incrementMistakes(userAnswer, question, mistakes, maxMistakes));
@@ -64,11 +68,12 @@ const mapDispatchToProps = (dispatch) => ({
 
 
 App.propTypes = {
+  time: PropTypes.number.isRequired,
   level: PropTypes.number.isRequired,
   mistakes: PropTypes.number.isRequired,
   questions: PropTypes.array.isRequired,
-  gameTime: PropTypes.number.isRequired,
   maxMistakes: PropTypes.number.isRequired,
+  onTick: PropTypes.func.isRequired,
   onGameEnd: PropTypes.func.isRequired,
   onGameStart: PropTypes.func.isRequired,
   onUserAnswer: PropTypes.func.isRequired

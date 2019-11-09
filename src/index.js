@@ -9,7 +9,6 @@ const init = (gameQuestions, gameParams) => {
   ReactDOM.render(<Provider store={store}>
     <App
       questions={gameQuestions}
-      gameTime={gameParams.gameTime}
       maxMistakes={gameParams.maxMistakes}
     />
   </Provider>,

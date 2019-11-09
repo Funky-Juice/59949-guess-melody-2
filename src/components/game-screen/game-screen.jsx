@@ -33,7 +33,7 @@ class GameScreen extends PureComponent {
   }
 
   render() {
-    const {question, mistakes, time} = this.props;
+    const {question, mistakes, time, onTick} = this.props;
 
     return <>
       <article id={`game-${question.type}`}>
@@ -41,6 +41,7 @@ class GameScreen extends PureComponent {
           <GameHeader
             time={time}
             errors={mistakes}
+            onTick={onTick}
           />
           {this._getGameScreen(this.props)}
         </section>
@@ -55,6 +56,7 @@ GameScreen.propTypes = {
   mistakes: PropTypes.number.isRequired,
   question: PropTypes.object.isRequired,
   maxMistakes: PropTypes.number.isRequired,
+  onTick: PropTypes.func.isRequired,
   onUserAnswer: PropTypes.func.isRequired
 };
 
