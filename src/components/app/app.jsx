@@ -3,8 +3,8 @@ import {connect} from 'react-redux';
 import ActionCreator from '../../store/actions';
 
 import WelcomeScreen from '../welcome-screen/welcome-screen';
-import GuessGenreScreen from '../guess-genre-screen/guess-genre-screen';
-import GuessArtistScreen from '../guess-artist-screen/guess-artist-screen';
+import GameScreen from '../game-screen/game-screen';
+
 
 class App extends PureComponent {
   constructor(props) {
@@ -33,27 +33,14 @@ class App extends PureComponent {
       />;
     }
 
-    const currentQuestion = questions[level];
-
-    switch (currentQuestion.type) {
-      case `genre`: return <GuessGenreScreen
-        question={currentQuestion}
-        time={gameTime}
-        errors={mistakes}
-        onAnswer={(answer) => onUserAnswer(answer, currentQuestion, mistakes, maxMistakes)}
-        screenIndex={level}
-      />;
-
-      case `artist`: return <GuessArtistScreen
-        question={currentQuestion}
-        time={gameTime}
-        errors={mistakes}
-        onAnswer={(answer) => onUserAnswer(answer, currentQuestion, mistakes, maxMistakes)}
-        screenIndex={level}
-      />;
-    }
-
-    return null;
+    return <GameScreen
+      question={questions[level]}
+      maxMistakes={maxMistakes}
+      mistakes={mistakes}
+      level={level}
+      time={gameTime}
+      onUserAnswer={onUserAnswer}
+    />;
   }
 }
 

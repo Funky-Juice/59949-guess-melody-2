@@ -1,5 +1,4 @@
 import {PureComponent} from 'react';
-import GameHeader from '../game-header/game-header';
 import AudioPlayer from '../audio-player/audio-player';
 
 class GuessArtistScreen extends PureComponent {
@@ -12,57 +11,48 @@ class GuessArtistScreen extends PureComponent {
   }
 
   render() {
-    const {time, errors, question, onAnswer, screenIndex} = this.props;
+    const {question, onAnswer, screenIndex} = this.props;
     const {isPlaying} = this.state;
 
-    return <article id="game-artist">
-      <section className="game game--artist">
-        <GameHeader
-          time={time}
-          errors={errors}
-        />
-
-        <section className="game__screen">
-          <h2 className="game__title">Кто исполняет эту песню?</h2>
-          <div className="game__track">
-            <div className="track">
-              <AudioPlayer
-                src={question.song.src}
-                isPlaying={isPlaying}
-                onPlayButtonClick={() => this.setState({isPlaying: !isPlaying})}
-              />
-            </div>
+    return <>
+      <section className="game__screen">
+        <h2 className="game__title">Кто исполняет эту песню?</h2>
+        <div className="game__track">
+          <div className="track">
+            <AudioPlayer
+              src={question.song.src}
+              isPlaying={isPlaying}
+              onPlayButtonClick={() => this.setState({isPlaying: !isPlaying})}
+            />
           </div>
+        </div>
 
-          <form className="game__artist">
-            {question.answers.map((answer) =>
-              <div className="artist" key={`${screenIndex}-answer-${answer.id}`}>
-                <input
-                  id={`answer-${answer.id}`}
-                  value={answer.artist}
-                  className="artist__input visually-hidden"
-                  type="radio"
-                  name="answer"
-                  onChange={(evt) => {
-                    onAnswer(evt.target.value);
-                  }}
-                ></input>
-                <label className="artist__name" htmlFor={`answer-${answer.id}`}>
-                  <img className="artist__picture" src={answer.picture} alt={answer.artist}></img>
-                  {answer.artist}
-                </label>
-              </div>
-            )}
-          </form>
-        </section>
+        <form className="game__artist">
+          {question.answers.map((answer) =>
+            <div className="artist" key={`${screenIndex}-answer-${answer.id}`}>
+              <input
+                id={`answer-${answer.id}`}
+                value={answer.artist}
+                className="artist__input visually-hidden"
+                type="radio"
+                name="answer"
+                onChange={(evt) => {
+                  onAnswer(evt.target.value);
+                }}
+              ></input>
+              <label className="artist__name" htmlFor={`answer-${answer.id}`}>
+                <img className="artist__picture" src={answer.picture} alt={answer.artist}></img>
+                {answer.artist}
+              </label>
+            </div>
+          )}
+        </form>
       </section>
-    </article>;
+    </>;
   }
 }
 
 GuessArtistScreen.propTypes = {
-  time: PropTypes.number.isRequired,
-  errors: PropTypes.number.isRequired,
   onAnswer: PropTypes.func.isRequired,
   screenIndex: PropTypes.number.isRequired,
   question: PropTypes.shape({

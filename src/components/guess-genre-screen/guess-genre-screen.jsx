@@ -1,5 +1,4 @@
 import {PureComponent, createRef} from 'react';
-import GameHeader from '../game-header/game-header';
 import AudioPlayer from '../audio-player/audio-player';
 
 class GuessGenreScreen extends PureComponent {
@@ -21,59 +20,50 @@ class GuessGenreScreen extends PureComponent {
   }
 
   render() {
-    const {time, errors, question, onAnswer, screenIndex} = this.props;
+    const {question, onAnswer, screenIndex} = this.props;
 
-    return <article id="game-genre">
-      <section className="game game--genre">
-        <GameHeader
-          time={time}
-          errors={errors}
-        />
+    return <>
+      <section className="game__screen">
+        <h2 className="game__title">Выберите {question.genre} треки</h2>
 
-        <section className="game__screen">
-          <h2 className="game__title">Выберите {question.genre} треки</h2>
+        <form
+          className="game__tracks"
+          ref={this._form}
+          onSubmit={(evt) => {
+            evt.preventDefault();
+            onAnswer(this.getInputsValues());
+          }}>
+          {question.answers.map((answer, i) =>
+            <div className="track" key={`${screenIndex}-answer-${answer.id}`}>
+              <AudioPlayer
+                src={answer.src}
+                isPlaying={i === this.state.activePlayer}
+                onPlayButtonClick={() => this.setState({
+                  activePlayer: this.state.activePlayer === i ? -1 : i
+                })}
+              />
 
-          <form
-            className="game__tracks"
-            ref={this._form}
-            onSubmit={(evt) => {
-              evt.preventDefault();
-              onAnswer(this.getInputsValues());
-            }}>
-            {question.answers.map((answer, i) =>
-              <div className="track" key={`${screenIndex}-answer-${answer.id}`}>
-                <AudioPlayer
-                  src={answer.src}
-                  isPlaying={i === this.state.activePlayer}
-                  onPlayButtonClick={() => this.setState({
-                    activePlayer: this.state.activePlayer === i ? -1 : i
-                  })}
-                />
-
-                <div className="game__answer">
-                  <input
-                    className="game__input visually-hidden"
-                    type="checkbox"
-                    name="answer"
-                    value={answer.genre}
-                    id={`answer-${answer.id}`}
-                  ></input>
-                  <label className="game__check" htmlFor={`answer-${answer.id}`}>Отметить</label>
-                </div>
+              <div className="game__answer">
+                <input
+                  className="game__input visually-hidden"
+                  type="checkbox"
+                  name="answer"
+                  value={answer.genre}
+                  id={`answer-${answer.id}`}
+                ></input>
+                <label className="game__check" htmlFor={`answer-${answer.id}`}>Отметить</label>
               </div>
-            )}
+            </div>
+          )}
 
-            <button className="game__submit button" type="submit">Ответить</button>
-          </form>
-        </section>
+          <button className="game__submit button" type="submit">Ответить</button>
+        </form>
       </section>
-    </article>;
+    </>;
   }
 }
 
 GuessGenreScreen.propTypes = {
-  time: PropTypes.number.isRequired,
-  errors: PropTypes.number.isRequired,
   onAnswer: PropTypes.func.isRequired,
   screenIndex: PropTypes.number.isRequired,
   question: PropTypes.shape({
