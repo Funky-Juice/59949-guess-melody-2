@@ -11,6 +11,13 @@ describe(`Action creators work correctly`, () => {
     });
   });
 
+  it(`Action creator for time reduce returns correct action`, () => {
+    expect(ActionCreator.reduceTime()).toEqual({
+      type: types.REDUCE_TIME,
+      payload: 1
+    });
+  });
+
   it(`Action creator for incrementing mistake returns action with 0 payload for type "Artist"`, () => {
     expect(ActionCreator.incrementMistakes(`Ozzy Osbourne`, {
       type: `artist`,

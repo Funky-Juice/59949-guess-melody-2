@@ -68,6 +68,34 @@ describe(`Reducer works correctly`, () => {
     });
   });
 
+  it(`Reducer should decrement time by a given value`, () => {
+    expect(reducer({
+      level: -1,
+      mistakes: 0,
+      time: 300
+    }, {
+      type: types.REDUCE_TIME,
+      payload: 0
+    })).toEqual({
+      level: -1,
+      mistakes: 0,
+      time: 300
+    });
+
+    expect(reducer({
+      level: -1,
+      mistakes: 0,
+      time: 300
+    }, {
+      type: types.REDUCE_TIME,
+      payload: 1
+    })).toEqual({
+      level: -1,
+      mistakes: 0,
+      time: 299
+    });
+  });
+
   it(`Reducer should correctly reset application state`, () => {
     expect(reducer({
       level: 3,
