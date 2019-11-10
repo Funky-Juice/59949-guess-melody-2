@@ -6,9 +6,10 @@ it(`App correctly renders after relaunch`, () => {
     .create(<App
       level={-1}
       questions={[{}]}
-      gameTime={0}
+      time={0}
       mistakes={0}
       maxMistakes={0}
+      onTick={() => {}}
       onGameEnd={() => {}}
       onGameStart={() => {}}
       onUserAnswer={() => {}}
