@@ -6,7 +6,7 @@ it(`WelcomeScreen start button click handler`, () => {
   const clickHandler = jest.fn();
   const welcomeScreen = shallow(<WelcomeScreen
     time={0}
-    errors={0}
+    maxMistakes={0}
     onStartBtnClick={clickHandler}
   />);
 

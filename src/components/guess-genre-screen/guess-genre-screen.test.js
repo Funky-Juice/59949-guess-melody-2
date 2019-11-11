@@ -41,7 +41,7 @@ it(`GuessGenreScreen correctly renders`, () => {
     .create(<GuessGenreScreen
       question={mockQuestion}
       time={0}
-      errors={0}
+      maxMistakes={0}
       screenIndex={0}
       onAnswer={() => {}}
     />, options)

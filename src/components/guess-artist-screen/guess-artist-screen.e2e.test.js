@@ -31,8 +31,6 @@ it(`GuessArtistScreen onAnswer returns correct data`, () => {
   const answerCB = jest.fn();
   const wrapper = shallow(<GuessArtistScreen
     question={mockQuestion}
-    time={0}
-    errors={0}
     screenIndex={0}
     onAnswer={answerCB}
   />);

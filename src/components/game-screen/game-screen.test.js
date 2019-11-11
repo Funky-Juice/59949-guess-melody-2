@@ -1,17 +1,16 @@
 import renderer from 'react-test-renderer';
-import {App} from './app';
+import GameScreen from './game-screen';
 
-it(`App correctly renders after relaunch`, () => {
+it(`GameScreen correctly renders after relaunch`, () => {
   const tree = renderer
-    .create(<App
-      level={-1}
-      questions={[{}]}
+    .create(<GameScreen
       time={0}
-      mistakes={0}
+      question={{}}
       maxMistakes={0}
+      mistakes={0}
+      level={0}
       onTick={() => {}}
-      onGameEnd={() => {}}
-      onGameStart={() => {}}
+      onTimeEnd={() => {}}
       onUserAnswer={() => {}}
     />)
     .toJSON();

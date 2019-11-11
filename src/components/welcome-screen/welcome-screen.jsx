@@ -1,5 +1,5 @@
 const WelcomeScreen = (props) => {
-  const {time, errors, onStartBtnClick} = props;
+  const {time, maxMistakes, onStartBtnClick} = props;
 
   return <section className="welcome">
     <div className="welcome__logo">
@@ -11,8 +11,8 @@ const WelcomeScreen = (props) => {
     <h2 className="welcome__rules-title">Правила игры</h2>
     <p className="welcome__text">Правила просты:</p>
     <ul className="welcome__rules-list">
-      <li>За {time} минут нужно ответить на все вопросы.</li>
-      <li>Можно допустить {errors} ошибки.</li>
+      <li>За {time / 60} минут нужно ответить на все вопросы.</li>
+      <li>Можно допустить {maxMistakes} ошибки.</li>
     </ul>
     <p className="welcome__text">Удачи!</p>
   </section>;
@@ -20,7 +20,7 @@ const WelcomeScreen = (props) => {
 
 WelcomeScreen.propTypes = {
   time: PropTypes.number.isRequired,
-  errors: PropTypes.number.isRequired,
+  maxMistakes: PropTypes.number.isRequired,
   onStartBtnClick: PropTypes.func.isRequired
 };
 
