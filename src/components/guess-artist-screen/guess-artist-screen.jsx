@@ -1,28 +1,17 @@
-import AudioPlayer from '../audio-player/audio-player';
-
 class GuessArtistScreen extends React.PureComponent {
   constructor(props) {
     super(props);
-
-    this.state = {
-      isPlaying: false
-    };
   }
 
   render() {
-    const {question, onAnswer, screenIndex} = this.props;
-    const {isPlaying} = this.state;
+    const {question, onAnswer, screenIndex, renderPlayer} = this.props;
 
     return <>
       <section className="game__screen">
         <h2 className="game__title">Кто исполняет эту песню?</h2>
         <div className="game__track">
           <div className="track">
-            <AudioPlayer
-              src={question.song.src}
-              isPlaying={isPlaying}
-              onPlayButtonClick={() => this.setState({isPlaying: !isPlaying})}
-            />
+            {renderPlayer(question.song, 0)}
           </div>
         </div>
 
@@ -54,6 +43,7 @@ class GuessArtistScreen extends React.PureComponent {
 GuessArtistScreen.propTypes = {
   onAnswer: PropTypes.func.isRequired,
   screenIndex: PropTypes.number.isRequired,
+  renderPlayer: PropTypes.func.isRequired,
   question: PropTypes.shape({
     type: PropTypes.oneOf([`artist`]).isRequired,
     song: PropTypes.shape({

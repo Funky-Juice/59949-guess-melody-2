@@ -1,7 +1,6 @@
 import WelcomeScreen from '../welcome-screen/welcome-screen';
 import GameScreen from '../game-screen/game-screen';
 
-
 class App extends React.PureComponent {
   constructor(props) {
     super(props);
@@ -41,7 +40,6 @@ class App extends React.PureComponent {
     />;
   }
 }
-
 
 App.propTypes = {
   time: PropTypes.number.isRequired,

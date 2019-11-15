@@ -1,13 +1,8 @@
 import {createRef} from 'react';
-import AudioPlayer from '../audio-player/audio-player';
 
 class GuessGenreScreen extends React.PureComponent {
   constructor(props) {
     super(props);
-
-    this.state = {
-      activePlayer: -1
-    };
 
     this._form = createRef();
   }
@@ -20,7 +15,7 @@ class GuessGenreScreen extends React.PureComponent {
   }
 
   render() {
-    const {question, onAnswer, screenIndex} = this.props;
+    const {question, onAnswer, screenIndex, renderPlayer} = this.props;
 
     return <>
       <section className="game__screen">
@@ -32,16 +27,11 @@ class GuessGenreScreen extends React.PureComponent {
           onSubmit={(evt) => {
             evt.preventDefault();
             onAnswer(this.getInputsValues());
-          }}>
-          {question.answers.map((answer, i) =>
+          }}
+        >
+          {question.answers.map((answer, i) => (
             <div className="track" key={`${screenIndex}-answer-${answer.id}`}>
-              <AudioPlayer
-                src={answer.src}
-                isPlaying={i === this.state.activePlayer}
-                onPlayButtonClick={() => this.setState({
-                  activePlayer: this.state.activePlayer === i ? -1 : i
-                })}
-              />
+              {renderPlayer(answer, i)}
 
               <div className="game__answer">
                 <input
@@ -54,7 +44,7 @@ class GuessGenreScreen extends React.PureComponent {
                 <label className="game__check" htmlFor={`answer-${answer.id}`}>Отметить</label>
               </div>
             </div>
-          )}
+          ))}
 
           <button className="game__submit button" type="submit">Ответить</button>
         </form>
@@ -66,6 +56,7 @@ class GuessGenreScreen extends React.PureComponent {
 GuessGenreScreen.propTypes = {
   onAnswer: PropTypes.func.isRequired,
   screenIndex: PropTypes.number.isRequired,
+  renderPlayer: PropTypes.func.isRequired,
   question: PropTypes.shape({
     type: PropTypes.oneOf([`genre`]).isRequired,
     genre: PropTypes.oneOf([`rock`, `jazz`, `pop`, `electronic`]).isRequired,
