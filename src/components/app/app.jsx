@@ -1,6 +1,3 @@
-import {connect} from 'react-redux';
-import ActionCreator from '../../store/actions';
-
 import WelcomeScreen from '../welcome-screen/welcome-screen';
 import GameScreen from '../game-screen/game-screen';
 
@@ -45,27 +42,6 @@ class App extends React.PureComponent {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  return Object.assign({}, ownProps, {
-    time: state.time,
-    level: state.level,
-    mistakes: state.mistakes
-  });
-};
-
-const mapDispatchToProps = (dispatch) => ({
-  onGameStart: () => dispatch(ActionCreator.incrementLevel()),
-
-  onGameEnd: () => dispatch(ActionCreator.resetGame()),
-
-  onTick: () => dispatch(ActionCreator.reduceTime()),
-
-  onUserAnswer: (userAnswer, question, mistakes, maxMistakes) => {
-    dispatch(ActionCreator.incrementLevel());
-    dispatch(ActionCreator.incrementMistakes(userAnswer, question, mistakes, maxMistakes));
-  }
-});
-
 
 App.propTypes = {
   time: PropTypes.number.isRequired,
@@ -79,6 +55,4 @@ App.propTypes = {
   onUserAnswer: PropTypes.func.isRequired
 };
 
-export {App};
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;
