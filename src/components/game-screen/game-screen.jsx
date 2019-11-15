@@ -31,17 +31,13 @@ class GameScreen extends React.PureComponent {
   }
 
   render() {
-    const {question, mistakes, time, onTick, onTimeEnd} = this.props;
+    const {question, mistakes} = this.props;
 
     return <>
       <article id={`game-${question.type}`}>
         <section className={`game game--${question.type}`}>
-          <GameHeader
-            time={time}
-            mistakes={mistakes}
-            onTick={onTick}
-            onTimeEnd={onTimeEnd}
-          />
+          <GameHeader mistakes={mistakes}/>
+
           {this._getGameScreen(this.props)}
         </section>
       </article>
@@ -50,13 +46,10 @@ class GameScreen extends React.PureComponent {
 }
 
 GameScreen.propTypes = {
-  time: PropTypes.number.isRequired,
   level: PropTypes.number.isRequired,
   mistakes: PropTypes.number.isRequired,
   question: PropTypes.object.isRequired,
   maxMistakes: PropTypes.number.isRequired,
-  onTick: PropTypes.func.isRequired,
-  onTimeEnd: PropTypes.func.isRequired,
   onUserAnswer: PropTypes.func.isRequired
 };
 
