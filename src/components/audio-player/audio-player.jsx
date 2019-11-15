@@ -1,23 +1,18 @@
-class AudioPlayer extends React.PureComponent {
-  constructor(props) {
-    super(props);
-  }
+const AudioPlayer = (props) => {
+  const {audioRef, isLoading, isPlaying, onPlayButtonClick} = props;
 
-  render() {
-    const {audioRef, isLoading, isPlaying, onPlayButtonClick} = this.props;
-    return (<>
-      <button
-        className={`track__button track__button--${isPlaying ? `pause` : `play`}`}
-        type="button"
-        disabled={isLoading}
-        onClick={onPlayButtonClick}
-      ></button>
-      <div className="track__status">
-        <audio ref={audioRef}/>
-      </div>
-    </>);
-  }
-}
+  return (<>
+    <button
+      className={`track__button track__button--${isPlaying ? `pause` : `play`}`}
+      type="button"
+      disabled={isLoading}
+      onClick={onPlayButtonClick}
+    ></button>
+    <div className="track__status">
+      <audio ref={audioRef}/>
+    </div>
+  </>);
+};
 
 AudioPlayer.propTypes = {
   isLoading: PropTypes.bool.isRequired,
