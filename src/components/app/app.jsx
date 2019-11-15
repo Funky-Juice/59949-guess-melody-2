@@ -1,4 +1,3 @@
-import {PureComponent} from 'react';
 import {connect} from 'react-redux';
 import ActionCreator from '../../store/actions';
 
@@ -6,7 +5,7 @@ import WelcomeScreen from '../welcome-screen/welcome-screen';
 import GameScreen from '../game-screen/game-screen';
 
 
-class App extends PureComponent {
+class App extends React.PureComponent {
   constructor(props) {
     super(props);
   }

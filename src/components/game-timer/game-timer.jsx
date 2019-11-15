@@ -1,6 +1,4 @@
-import {PureComponent} from 'react';
-
-class GameTimer extends PureComponent {
+class GameTimer extends React.PureComponent {
   constructor(props) {
     super(props);
 

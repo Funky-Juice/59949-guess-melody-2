@@ -1,6 +1,6 @@
-import {createRef, PureComponent} from 'react';
+import {createRef} from 'react';
 
-class AudioPlayer extends PureComponent {
+class AudioPlayer extends React.PureComponent {
   constructor(props) {
     super(props);
 

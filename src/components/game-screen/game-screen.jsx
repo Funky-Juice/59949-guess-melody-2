@@ -1,10 +1,9 @@
 import GuessGenreScreen from '../guess-genre-screen/guess-genre-screen';
 import GuessArtistScreen from '../guess-artist-screen/guess-artist-screen';
 import GameHeader from '../game-header/game-header';
-import {PureComponent} from 'react';
 
 
-class GameScreen extends PureComponent {
+class GameScreen extends React.PureComponent {
   constructor(props) {
     super(props);
   }
