@@ -5,17 +5,24 @@ class GuessGenreScreen extends React.PureComponent {
     super(props);
 
     this._form = createRef();
+    this._answerSubmitHandler = this._answerSubmitHandler.bind(this);
   }
 
-  getInputsValues() {
+  _getInputsValues() {
     const checkboxArray = Array.prototype.slice.call(this._form.current);
     const checkedCheckboxes = checkboxArray.filter((input) => input.checked);
     const checkedCheckboxesValues = checkedCheckboxes.map((input) => input.value);
     return checkedCheckboxesValues;
   }
 
+  _answerSubmitHandler(evt) {
+    const {onAnswer} = this.props;
+    evt.preventDefault();
+    onAnswer(this._getInputsValues());
+  }
+
   render() {
-    const {question, onAnswer, screenIndex, renderPlayer} = this.props;
+    const {question, screenIndex, renderPlayer} = this.props;
 
     return <>
       <section className="game__screen">
@@ -24,10 +31,7 @@ class GuessGenreScreen extends React.PureComponent {
         <form
           className="game__tracks"
           ref={this._form}
-          onSubmit={(evt) => {
-            evt.preventDefault();
-            onAnswer(this.getInputsValues());
-          }}
+          onSubmit={this._answerSubmitHandler}
         >
           {question.answers.map((answer, i) => (
             <div className="track" key={`${screenIndex}-answer-${answer.id}`}>

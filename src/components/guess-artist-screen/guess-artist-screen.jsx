@@ -1,17 +1,26 @@
 class GuessArtistScreen extends React.PureComponent {
   constructor(props) {
     super(props);
+
+    this._audioPlayerID = 0;
+    this._answerChangeHandler = this._answerChangeHandler.bind(this);
+  }
+
+  _answerChangeHandler(evt) {
+    const {onAnswer} = this.props;
+    const artist = evt.target.value;
+    onAnswer(artist);
   }
 
   render() {
-    const {question, onAnswer, screenIndex, renderPlayer} = this.props;
+    const {question, screenIndex, renderPlayer} = this.props;
 
     return <>
       <section className="game__screen">
         <h2 className="game__title">Кто исполняет эту песню?</h2>
         <div className="game__track">
           <div className="track">
-            {renderPlayer(question.song, 0)}
+            {renderPlayer(question.song, this._audioPlayerID)}
           </div>
         </div>
 
@@ -24,9 +33,7 @@ class GuessArtistScreen extends React.PureComponent {
                 className="artist__input visually-hidden"
                 type="radio"
                 name="answer"
-                onChange={(evt) => {
-                  onAnswer(evt.target.value);
-                }}
+                onChange={this._answerChangeHandler}
               ></input>
               <label className="artist__name" htmlFor={`answer-${answer.id}`}>
                 <img className="artist__picture" src={answer.picture} alt={answer.artist}></img>
