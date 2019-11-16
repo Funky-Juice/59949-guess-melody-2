@@ -11,6 +11,14 @@ const withActivePlayer = (Component) => {
       this.state = {
         activePlayer: -1,
       };
+
+      this._playButtonClickHandler = this._playButtonClickHandler.bind(this);
+    }
+
+    _playButtonClickHandler(playerID) {
+      this.setState((prevState) => ({
+        activePlayer: prevState.activePlayer === playerID ? -1 : playerID
+      }));
     }
 
     render() {
@@ -20,11 +28,10 @@ const withActivePlayer = (Component) => {
         {...this.props}
         renderPlayer={(it, i) => {
           return <AudioPlayerWrapped
+            id={i}
             src={it.src}
             isPlaying={i === activePlayer}
-            onPlayButtonClick={() => this.setState((prevState) => ({
-              activePlayer: prevState.activePlayer === i ? -1 : i
-            }))}
+            onPlayButtonClick={this._playButtonClickHandler}
           />;
         }}
       />;

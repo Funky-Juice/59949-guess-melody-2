@@ -14,7 +14,9 @@ const withAudioPlayer = (Component) => {
     }
 
     _onPlayButtonClick() {
-      this.props.onPlayButtonClick();
+      const {id, onPlayButtonClick} = this.props;
+
+      onPlayButtonClick(id);
       this.setState({isPlaying: !this.state.isPlaying});
     }
 
@@ -66,6 +68,7 @@ const withAudioPlayer = (Component) => {
   }
 
   WithAudioPlayer.propTypes = {
+    id: PropTypes.number.isRequired,
     src: PropTypes.string.isRequired,
     isPlaying: PropTypes.bool.isRequired,
     onPlayButtonClick: PropTypes.func.isRequired
