@@ -28,23 +28,14 @@ const mockQuestion = {
   ]
 };
 
-function createNodeMock(element) {
-  if (element.type === `audio`) {
-    return {createRef() {}};
-  }
-  return null;
-}
-
 it(`GuessGenreScreen correctly renders`, () => {
-  const options = {createNodeMock};
   const tree = renderer
     .create(<GuessGenreScreen
       question={mockQuestion}
-      time={0}
-      maxMistakes={0}
       screenIndex={0}
       onAnswer={() => {}}
-    />, options)
+      renderPlayer={() => {}}
+    />)
     .toJSON();
 
   expect(tree).toMatchSnapshot();

@@ -26,13 +26,12 @@ const mockQuestion = {
   ]
 };
 
-
 it(`GuessArtistScreen onAnswer returns correct data`, () => {
   const answerCB = jest.fn();
   const wrapper = shallow(<GuessArtistScreen
     question={mockQuestion}
-    screenIndex={0}
     onAnswer={answerCB}
+    screenIndex={0} renderPlayer={() => {}}
   />);
 
   const radioInput = wrapper.find(`input.artist__input`).first();

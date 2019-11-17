@@ -1,7 +1,6 @@
 import {shallow} from 'enzyme';
 import WelcomeScreen from './welcome-screen.jsx';
 
-
 it(`WelcomeScreen start button click handler`, () => {
   const clickHandler = jest.fn();
   const welcomeScreen = shallow(<WelcomeScreen

@@ -1,7 +1,6 @@
 import {mount} from 'enzyme';
 import GuessGenreScreen from './guess-genre-screen';
 
-
 const mockQuestion = {
   type: `genre`,
   genre: `jazz`,
@@ -37,6 +36,7 @@ it(`GuessGenreScreen onAnswer returns correct data`, () => {
     question={mockQuestion}
     screenIndex={0}
     onAnswer={answerCB}
+    renderPlayer={() => {}}
   />);
 
   const form = wrapper.find(`form.game__tracks`);
