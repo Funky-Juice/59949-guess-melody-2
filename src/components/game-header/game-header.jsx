@@ -1,9 +1,8 @@
-import GameTimer from '../game-timer/game-timer';
+import GameTimer from '../game-timer';
 import GameMistakes from '../game-mistakes/game-mistakes';
 
-
 const GameHeader = (props) => {
-  const {time, mistakes, onTick, onTimeEnd} = props;
+  const {mistakes} = props;
 
   return <header className="game__header">
     <a className="game__back" href="#">
@@ -16,17 +15,14 @@ const GameHeader = (props) => {
         style={{filter: `url(#blur)`, transform: `rotate(-90deg) scaleY(-1)`, transformOrigin: `center`}}/>
     </svg>
 
-    <GameTimer time={time} onTick={onTick} onTimeEnd={onTimeEnd}/>
+    <GameTimer/>
 
     <GameMistakes mistakes={mistakes}/>
   </header>;
 };
 
 GameHeader.propTypes = {
-  time: PropTypes.number.isRequired,
-  mistakes: PropTypes.number.isRequired,
-  onTick: PropTypes.func.isRequired,
-  onTimeEnd: PropTypes.func.isRequired
+  mistakes: PropTypes.number.isRequired
 };
 
 export default GameHeader;

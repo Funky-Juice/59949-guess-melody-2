@@ -1,26 +1,28 @@
-import {PureComponent, createRef} from 'react';
-import AudioPlayer from '../audio-player/audio-player';
+import {createRef} from 'react';
 
-class GuessGenreScreen extends PureComponent {
+class GuessGenreScreen extends React.PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = {
-      activePlayer: -1
-    };
-
     this._form = createRef();
+    this._answerSubmitHandler = this._answerSubmitHandler.bind(this);
   }
 
-  getInputsValues() {
+  _getInputsValues() {
     const checkboxArray = Array.prototype.slice.call(this._form.current);
     const checkedCheckboxes = checkboxArray.filter((input) => input.checked);
     const checkedCheckboxesValues = checkedCheckboxes.map((input) => input.value);
     return checkedCheckboxesValues;
   }
 
+  _answerSubmitHandler(evt) {
+    const {onAnswer} = this.props;
+    evt.preventDefault();
+    onAnswer(this._getInputsValues());
+  }
+
   render() {
-    const {question, onAnswer, screenIndex} = this.props;
+    const {question, screenIndex, renderPlayer} = this.props;
 
     return <>
       <section className="game__screen">
@@ -29,19 +31,11 @@ class GuessGenreScreen extends PureComponent {
         <form
           className="game__tracks"
           ref={this._form}
-          onSubmit={(evt) => {
-            evt.preventDefault();
-            onAnswer(this.getInputsValues());
-          }}>
-          {question.answers.map((answer, i) =>
+          onSubmit={this._answerSubmitHandler}
+        >
+          {question.answers.map((answer, i) => (
             <div className="track" key={`${screenIndex}-answer-${answer.id}`}>
-              <AudioPlayer
-                src={answer.src}
-                isPlaying={i === this.state.activePlayer}
-                onPlayButtonClick={() => this.setState({
-                  activePlayer: this.state.activePlayer === i ? -1 : i
-                })}
-              />
+              {renderPlayer(answer, i)}
 
               <div className="game__answer">
                 <input
@@ -54,7 +48,7 @@ class GuessGenreScreen extends PureComponent {
                 <label className="game__check" htmlFor={`answer-${answer.id}`}>Отметить</label>
               </div>
             </div>
-          )}
+          ))}
 
           <button className="game__submit button" type="submit">Ответить</button>
         </form>
@@ -66,6 +60,7 @@ class GuessGenreScreen extends PureComponent {
 GuessGenreScreen.propTypes = {
   onAnswer: PropTypes.func.isRequired,
   screenIndex: PropTypes.number.isRequired,
+  renderPlayer: PropTypes.func.isRequired,
   question: PropTypes.shape({
     type: PropTypes.oneOf([`genre`]).isRequired,
     genre: PropTypes.oneOf([`rock`, `jazz`, `pop`, `electronic`]).isRequired,

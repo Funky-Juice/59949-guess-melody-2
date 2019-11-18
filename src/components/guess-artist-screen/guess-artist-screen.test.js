@@ -26,21 +26,14 @@ const mockQuestion = {
   ]
 };
 
-function createNodeMock(element) {
-  if (element.type === `audio`) {
-    return {createRef() {}};
-  }
-  return null;
-}
-
 it(`GuessArtistScreen correctly renders`, () => {
-  const options = {createNodeMock};
   const tree = renderer
     .create(<GuessArtistScreen
       question={mockQuestion}
       screenIndex={0}
       onAnswer={() => {}}
-    />, options)
+      renderPlayer={() => {}}
+    />)
     .toJSON();
 
   expect(tree).toMatchSnapshot();
