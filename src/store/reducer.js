@@ -1,8 +1,8 @@
 import * as types from './action-types';
-import {params} from '../mocks/questions';
+import {gameParams} from '../gameParams';
 
 const initialState = {
-  time: params.gameTime * 60,
+  time: gameParams.GAME_TIME * 60,
   level: -1,
   mistakes: 0,
   questions: []
