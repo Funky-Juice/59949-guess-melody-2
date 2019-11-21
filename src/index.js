@@ -1,19 +1,18 @@
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
+import ActionCreator from './store/actions';
 import store from './store/store';
+import {gameParams} from './gameParams';
 import App from './components/app';
-import {questions, params} from './mocks/questions';
 
-const init = (gameQuestions, gameParams) => {
+const init = (params) => {
+  store.dispatch(ActionCreator.getQuestions());
 
   ReactDOM.render(<Provider store={store}>
-    <App
-      questions={gameQuestions}
-      maxMistakes={gameParams.maxMistakes}
-    />
+    <App maxMistakes={params.MAX_MISTAKES}/>
   </Provider>,
   document.getElementById(`root`)
   );
 };
 
-init(questions, params);
+init(gameParams);

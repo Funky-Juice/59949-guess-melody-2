@@ -5,7 +5,8 @@ import App from './app';
 const mapStateToProps = (state, ownProps) => {
   return Object.assign({}, ownProps, {
     level: state.level,
-    mistakes: state.mistakes
+    mistakes: state.mistakes,
+    questions: state.questions
   });
 };
 
