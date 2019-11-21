@@ -4,7 +4,8 @@ import {params} from '../mocks/questions';
 const initialState = {
   time: params.gameTime * 60,
   level: -1,
-  mistakes: 0
+  mistakes: 0,
+  questions: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -19,6 +20,10 @@ const reducer = (state = initialState, action) => {
 
     case types.REDUCE_TIME: return Object.assign({}, state, {
       time: state.time - action.payload
+    });
+
+    case types.SET_QUESTIONS: return Object.assign({}, state, {
+      questions: action.payload
     });
 
     case types.RESET: return Object.assign({}, initialState);
