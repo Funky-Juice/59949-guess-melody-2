@@ -37,6 +37,20 @@ const ActionCreator = {
       payload: answerIsCorrect ? 0 : 1
     };
   },
+
+  getQuestions: () => (dispatch, _getState, api) => {
+    return api.get(`/questions`)
+      .then((response) => {
+        dispatch(ActionCreator.setQuestions(response.data));
+      });
+  },
+
+  setQuestions: (questions) => {
+    return {
+      type: types.SET_QUESTIONS,
+      payload: questions,
+    };
+  }
 };
 
 export default ActionCreator;
