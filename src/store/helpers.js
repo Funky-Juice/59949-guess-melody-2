@@ -16,3 +16,11 @@ export const isGenreAnswerCorrect = (userAnswer, question) => {
 
   return JSON.stringify(correctAnswers) === JSON.stringify(userAnswer);
 };
+
+export const addFieldsToData = (data) => {
+  data.forEach((obj) => {
+    obj.answers.forEach((it, i) => (it.id = i));
+  });
+
+  return data;
+};

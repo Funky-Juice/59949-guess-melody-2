@@ -1,5 +1,5 @@
 import * as types from './action-types';
-import {isArtistAnswerCorrect, isGenreAnswerCorrect} from './helpers';
+import {isArtistAnswerCorrect, isGenreAnswerCorrect, addFieldsToData} from './helpers';
 
 const ActionCreator = {
   resetGame: () => ({
@@ -41,7 +41,8 @@ const ActionCreator = {
   getQuestions: () => (dispatch, _getState, api) => {
     return api.get(`/questions`)
       .then((response) => {
-        dispatch(ActionCreator.setQuestions(response.data));
+        const modifiedData = addFieldsToData(response.data);
+        dispatch(ActionCreator.setQuestions(modifiedData));
       });
   },
 
