@@ -42,8 +42,13 @@ const withAudioPlayer = (Component) => {
       };
     }
 
-    componentDidUpdate() {
+    componentDidUpdate(prevProps) {
+      const {screenIndex, src} = this.props;
       const audio = this._audioRef.current;
+
+      if (screenIndex !== prevProps.screenIndex) {
+        return (audio.src = src);
+      }
 
       return this.props.isPlaying ? audio.play() : audio.pause();
     }
@@ -71,6 +76,7 @@ const withAudioPlayer = (Component) => {
     id: PropTypes.number.isRequired,
     src: PropTypes.string.isRequired,
     isPlaying: PropTypes.bool.isRequired,
+    screenIndex: PropTypes.number.isRequired,
     onPlayButtonClick: PropTypes.func.isRequired
   };
 
