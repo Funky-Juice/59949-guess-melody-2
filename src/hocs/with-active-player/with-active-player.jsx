@@ -15,10 +15,20 @@ const withActivePlayer = (Component) => {
       this._playButtonClickHandler = this._playButtonClickHandler.bind(this);
     }
 
+    componentDidUpdate(prevProps) {
+      if (prevProps.screenIndex !== this.props.screenIndex) {
+        this._resetActiveAudioPlayer();
+      }
+    }
+
     _playButtonClickHandler(playerID) {
       this.setState((prevState) => ({
         activePlayer: prevState.activePlayer === playerID ? -1 : playerID
       }));
+    }
+
+    _resetActiveAudioPlayer() {
+      this.setState({activePlayer: -1});
     }
 
     render() {
@@ -37,6 +47,10 @@ const withActivePlayer = (Component) => {
       />;
     }
   }
+
+  WithActivePlayer.propTypes = {
+    screenIndex: PropTypes.number.isRequired
+  };
 
   return WithActivePlayer;
 };
