@@ -63,11 +63,11 @@ GuessGenreScreen.propTypes = {
   renderPlayer: PropTypes.func.isRequired,
   question: PropTypes.shape({
     type: PropTypes.oneOf([`genre`]).isRequired,
-    genre: PropTypes.oneOf([`rock`, `jazz`, `pop`, `electronic`]).isRequired,
+    genre: PropTypes.oneOf([`reggae`, `electronic`, `country`, `alternative`]).isRequired,
     answers: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.number.isRequired,
       src: PropTypes.string.isRequired,
-      genre: PropTypes.oneOf([`rock`, `jazz`, `pop`, `electronic`]).isRequired
+      genre: PropTypes.oneOf([`reggae`, `electronic`, `country`, `alternative`]).isRequired
     }))
   }).isRequired
 };

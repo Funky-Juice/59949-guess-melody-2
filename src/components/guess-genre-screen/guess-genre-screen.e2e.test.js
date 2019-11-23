@@ -3,22 +3,22 @@ import GuessGenreScreen from './guess-genre-screen';
 
 const mockQuestion = {
   type: `genre`,
-  genre: `jazz`,
+  genre: `electronic`,
   answers: [
     {
       id: 1,
       src: `https://upload.wikimedia.org/wikipedia/commons/3/34/Metalmania_(ISRC_USUAN1700023).mp3`,
-      genre: `rock`
+      genre: `reggae`
     },
     {
       id: 2,
       src: `https://upload.wikimedia.org/wikipedia/commons/5/5d/Acid_Trumpet_%28ISRC_USUAN1100339%29.mp3`,
-      genre: `jazz`
+      genre: `alternative`
     },
     {
       id: 3,
       src: `https://upload.wikimedia.org/wikipedia/commons/d/db/Keef_Trouble%2C_Oasis.oga`,
-      genre: `pop`
+      genre: `country`
     },
     {
       id: 4,

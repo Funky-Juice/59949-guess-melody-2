@@ -7,14 +7,17 @@ describe(`HOC withActivePlayer should work correctly`, () => {
   const MockComponentWrapped = withActivePlayer(MockComponent);
 
   beforeEach(() => {
-    wrapper = mount(<MockComponentWrapped/>);
+    wrapper = mount(
+        <MockComponentWrapped
+          screenIndex={1}
+        />);
   });
 
   it(`Should be paused on default`, () => {
     expect(wrapper.state().activePlayer).toBe(-1);
   });
 
-  it(`Should set/unset activePlayerID correctly on play/pause button click`, () => {
+  it(`Should set/unset activePlayer ID correctly on play/pause button click`, () => {
     wrapper.instance()._playButtonClickHandler(0);
     expect(wrapper.state().activePlayer).toBe(0);
 

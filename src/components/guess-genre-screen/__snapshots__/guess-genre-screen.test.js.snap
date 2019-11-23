@@ -8,7 +8,7 @@ exports[`GuessGenreScreen correctly renders 1`] = `
     className="game__title"
   >
     Выберите 
-    jazz
+    electronic
      треки
   </h2>
   <form
@@ -26,7 +26,7 @@ exports[`GuessGenreScreen correctly renders 1`] = `
           id="answer-1"
           name="answer"
           type="checkbox"
-          value="rock"
+          value="reggae"
         />
         <label
           className="game__check"
@@ -47,7 +47,7 @@ exports[`GuessGenreScreen correctly renders 1`] = `
           id="answer-2"
           name="answer"
           type="checkbox"
-          value="jazz"
+          value="alternative"
         />
         <label
           className="game__check"
@@ -68,7 +68,7 @@ exports[`GuessGenreScreen correctly renders 1`] = `
           id="answer-3"
           name="answer"
           type="checkbox"
-          value="pop"
+          value="country"
         />
         <label
           className="game__check"

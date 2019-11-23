@@ -16,6 +16,7 @@ HTMLMediaElement.prototype.pause = () => {};
 const wrapper = shallow(
     <MockComponentWrapped
       id={1}
+      screenIndex={1}
       isPlaying={false}
       src={`question.song.src`}
       onPlayButtonClick={clickHandler}

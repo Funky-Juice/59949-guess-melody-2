@@ -8,7 +8,8 @@ describe(`Reducer works correctly`, () => {
     expect(reducer(undefined, {})).toEqual({
       level: -1,
       mistakes: 0,
-      time: 300
+      time: 300,
+      questions: []
     });
   });
 
@@ -16,27 +17,31 @@ describe(`Reducer works correctly`, () => {
     expect(reducer({
       level: -1,
       mistakes: 0,
-      time: 300
+      time: 300,
+      questions: []
     }, {
       type: types.INCREMENT_LEVEL,
       payload: 0
     })).toEqual({
       level: -1,
       mistakes: 0,
-      time: 300
+      time: 300,
+      questions: []
     });
 
     expect(reducer({
       level: -1,
       mistakes: 0,
-      time: 300
+      time: 300,
+      questions: []
     }, {
       type: types.INCREMENT_LEVEL,
       payload: 1
     })).toEqual({
       level: 0,
       mistakes: 0,
-      time: 300
+      time: 300,
+      questions: []
     });
   });
 
@@ -44,27 +49,31 @@ describe(`Reducer works correctly`, () => {
     expect(reducer({
       level: -1,
       mistakes: 0,
-      time: 300
+      time: 300,
+      questions: []
     }, {
       type: types.INCREMENT_MISTAKES,
       payload: 0
     })).toEqual({
       level: -1,
       mistakes: 0,
-      time: 300
+      time: 300,
+      questions: []
     });
 
     expect(reducer({
       level: -1,
       mistakes: 0,
-      time: 300
+      time: 300,
+      questions: []
     }, {
       type: types.INCREMENT_MISTAKES,
       payload: 1
     })).toEqual({
       level: -1,
       mistakes: 1,
-      time: 300
+      time: 300,
+      questions: []
     });
   });
 
@@ -72,27 +81,31 @@ describe(`Reducer works correctly`, () => {
     expect(reducer({
       level: -1,
       mistakes: 0,
-      time: 300
+      time: 300,
+      questions: []
     }, {
       type: types.REDUCE_TIME,
       payload: 0
     })).toEqual({
       level: -1,
       mistakes: 0,
-      time: 300
+      time: 300,
+      questions: []
     });
 
     expect(reducer({
       level: -1,
       mistakes: 0,
-      time: 300
+      time: 300,
+      questions: []
     }, {
       type: types.REDUCE_TIME,
       payload: 1
     })).toEqual({
       level: -1,
       mistakes: 0,
-      time: 299
+      time: 299,
+      questions: []
     });
   });
 
@@ -100,26 +113,30 @@ describe(`Reducer works correctly`, () => {
     expect(reducer({
       level: 3,
       mistakes: 2,
-      time: 22
+      time: 22,
+      questions: null
     }, {
       type: types.RESET
     })).toEqual({
       level: -1,
       mistakes: 0,
-      time: 300
+      time: 300,
+      questions: []
     });
 
     expect(reducer({
       level: 3,
       mistakes: 2,
-      time: 22
+      time: 22,
+      questions: null
     }, {
       type: types.RESET,
       payload: 1
     })).toEqual({
       level: -1,
       mistakes: 0,
-      time: 300
+      time: 300,
+      questions: []
     });
   });
 });
