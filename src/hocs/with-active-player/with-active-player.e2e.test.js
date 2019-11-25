@@ -27,4 +27,15 @@ describe(`HOC withActivePlayer should work correctly`, () => {
     wrapper.instance()._playButtonClickHandler(-1);
     expect(wrapper.state().activePlayer).toBe(-1);
   });
+
+  it(`Should reset activePlayer ID on screenIndex change`, () => {
+    expect(wrapper.state().activePlayer).toBe(-1);
+    expect(wrapper.props().screenIndex).toBe(1);
+
+    wrapper.instance()._playButtonClickHandler(1);
+    expect(wrapper.state().activePlayer).toBe(1);
+
+    wrapper.setProps({screenIndex: 2});
+    expect(wrapper.state().activePlayer).toBe(-1);
+  });
 });

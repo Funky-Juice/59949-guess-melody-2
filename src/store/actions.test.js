@@ -1,6 +1,7 @@
+// import MockAdapter from 'axios-mock-adapter';
+// import {createAPI} from '../services/api';
 import * as types from './action-types';
 import ActionCreator from './actions';
-
 
 describe(`Action creators work correctly`, () => {
 
@@ -201,4 +202,24 @@ describe(`Action creators work correctly`, () => {
       type: types.RESET
     });
   });
+
+  // it(`Action creator for fetch Questions data returns correct action`, () => {
+  //   const dispatch = jest.fn();
+  //   const api = createAPI();
+  //   const apiMock = new MockAdapter(api);
+  //   const questionLoader = ActionCreator.getQuestions();
+  //
+  //   apiMock
+  //     .onGet(`/questions`)
+  //     .reply(200, [{fake: true}]);
+  //
+  //   return questionLoader(dispatch, jest.fn(), api)
+  //     .then(() => {
+  //       expect(dispatch).toHaveBeenCalledTimes(1);
+  //       expect(dispatch).toHaveBeenNthCalledWith(1, {
+  //         type: types.SET_QUESTIONS,
+  //         payload: [{fake: true}],
+  //       });
+  //     });
+  // });
 });

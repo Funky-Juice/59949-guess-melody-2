@@ -46,10 +46,10 @@ const ActionCreator = {
       });
   },
 
-  setQuestions: (questions) => {
+  setQuestions: (payload = []) => {
     return {
       type: types.SET_QUESTIONS,
-      payload: questions,
+      payload
     };
   }
 };

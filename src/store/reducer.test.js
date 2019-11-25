@@ -109,6 +109,23 @@ describe(`Reducer works correctly`, () => {
     });
   });
 
+  it(`Reducer should correctly set questions data`, () => {
+    expect(reducer({
+      level: -1,
+      mistakes: 0,
+      time: 300,
+      questions: []
+    }, {
+      type: types.SET_QUESTIONS,
+      payload: [{}, {}, {}]
+    })).toEqual({
+      level: -1,
+      mistakes: 0,
+      time: 300,
+      questions: [{}, {}, {}]
+    });
+  });
+
   it(`Reducer should correctly reset application state`, () => {
     expect(reducer({
       level: 3,
