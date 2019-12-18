@@ -17,4 +17,4 @@ const init = (params) => {
 
 init(gameParams);
 
-// module7-task2
+// module8-task1
