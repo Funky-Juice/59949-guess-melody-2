@@ -16,3 +16,5 @@ const init = (params) => {
 };
 
 init(gameParams);
+
+// module7-task2
